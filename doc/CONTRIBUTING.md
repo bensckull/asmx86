@@ -3,6 +3,9 @@
 Ce guide présentera les différentes règles de normalisation de développement qui
 seront utilisées dans l'optique de la réalisation de ce projet.
 
+L'ensemble du code devra être réalisé en anglais (variables, fonctions, etc). La
+documentation quand à elle pourra être écrite en français.
+
 ## Nom de classes
 
 Les classes utiliseront la syntaxe **CamelCase**, qui implique l'utilisation de
@@ -23,6 +26,10 @@ l'utilisation d'underscore et d'éviter les casses majuscules.
 const std::String full_path;
 std::String base_name;
 ```
+
+## Taille maximale des lignes
+
+Une ligne de code ne devra pas dépasser les **100 caractères**.
 
 ## Indentations
 
