@@ -54,7 +54,7 @@ all: checkdirs link
 
 link:
 	$(call colorecho,"Linking" $(NAME))
-	g++ $(CPPFLAGS) $(FILES) -o $(NAME)
+	g++ $(CPPFLAGS) $(FILES) -o $(NAME) -I.
 	@echo
 
 checkdirs: $(BUILD_DIR)
