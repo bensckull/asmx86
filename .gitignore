@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+asmx86
+
+# NASM
+*.asm
+*.nasm
+
+# Doxygen
+*.js
+*.css
+*.png
+*.html
+Doxyfile
