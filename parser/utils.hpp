@@ -17,6 +17,7 @@
 /*! \file parser.hpp
  *
  *  \author BroFreedom <jdoe1337@gmx.fr>
+ *  \author Hanan6 <hanan.najim6@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
@@ -117,4 +118,46 @@ std::vector<std::string> split(
     }
 
     return data;
+}
+
+/*! Join strings between quotation from a vector of string
+ *
+ *  \param data a vector of parameters
+ *
+ *  \return a vector of string
+ */
+std::vector<std::string> asm_join_message(std::vector<std::string> & data)
+{
+    std::vector<std::string> new_data;
+
+    std::string message = "";
+
+    for(std::string element : data) {
+        std::size_t quotation = element.find_first_of('"');
+
+        // A quotation has been found
+        if(quotation != std::string::npos) {
+            // The quotation is place at the beggining
+            if(quotation == 0) {
+                message += element + " ";
+            }
+            /// The quotation is place at the end
+            else if (quotation == element.size() - 1) {
+                message += element;
+
+                new_data.push_back(message);
+                message = "";
+            }
+        }
+        // No quotation but still between quotations
+        else if (message.size() > 0) {
+            message += element;
+        }
+        // No quotation at all
+        else {
+            new_data.push_back(element);
+        }
+    }
+
+    return new_data;
 }
