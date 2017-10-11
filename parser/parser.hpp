@@ -35,6 +35,66 @@
  *  Class
  * -------------------------------------------------------------------------- */
 
+class AsmLabel
+{
+    private:
+        std::string __name;
+
+        unsigned int __position;
+
+    public:
+        /*! Constructor
+         *
+         *  \param name the label name
+         */
+        AsmLabel(const std::string& name): __name(name) {}
+
+        /*! Constructor
+         *
+         *  \param name the label name
+         *  \param position the label position
+         */
+        AsmLabel(const std::string& name, const unsigned int & position):
+            __name(name), __position(position) {}
+
+        /*! Set label
+         *
+         *  \param name the label string
+         */
+        void set_name(const std::string& name)
+        {
+            __name = name;
+        }
+
+        /*! Get the name
+         *
+         *  \return a string name
+         */
+        std::string get_name()
+        {
+            return __name;
+        }
+
+        /*! Set the label position in section
+         *
+         *  \param position the new position in section
+         */
+        void set_position(const unsigned int & position)
+        {
+            __position = position;
+        }
+
+        /*! Get the label position in section
+         *
+         *  \return the position as integer
+         */
+        int get_position()
+        {
+            return __position;
+        }
+
+};
+
 class AsmInstruction {
 
     private:
@@ -47,8 +107,7 @@ class AsmInstruction {
          *
          *  \param name the instruction label
          */
-        AsmInstruction(const std::string& name): __name(name)
-        {}
+        AsmInstruction(const std::string& name): __name(name) {}
 
         /*! Set instruction label
          *
@@ -108,11 +167,12 @@ class AsmSection {
 
         std::vector<AsmInstruction*> __instructions;
 
+        std::vector<AsmLabel*> __labels;
+
     public:
         /*! Constructor
          */
-        AsmSection(const std::string& name): __name(name)
-        {}
+        AsmSection(const std::string& name): __name(name) {}
 
         /*! Set instruction label
          *
@@ -149,6 +209,89 @@ class AsmSection {
         {
             return __instructions;
         }
+
+        /*! Add a new label to section
+         *
+         *  \param label the new label to add
+         */
+        void add_label(AsmLabel* label)
+        {
+            __labels.push_back(label);
+        }
+
+        /*! Get labels list
+         *
+         *  \return a vector of AsmLabel
+         */
+        std::vector<AsmLabel*> get_labels()
+        {
+            return __labels;
+        }
+};
+
+class AsmMacro
+{
+    private:
+        std::string __name;
+
+        std::vector<std::string> __parameters;
+
+        std::vector<AsmSection*> __sections;
+
+    public:
+        /*! Constructor
+         *
+         *  \param name the macro name
+         */
+        AsmMacro(const std::string& name): __name(name) {}
+
+        /*! Get macro name
+         *
+         *  \return a string
+         */
+        std::string get_name()
+        {
+            return __name;
+        }
+
+        /*! Get macro parameters
+         *
+         *  \return a vector of modules string
+         */
+        std::vector<std::string> get_parameters()
+        {
+            return __parameters;
+        }
+
+        /*! Get macro sections
+         *
+         *  \return a vector of AsmSection
+         */
+        std::vector<AsmSection*> get_sections()
+        {
+            return __sections;
+        }
+
+        /*! Add a new macro section
+         *
+         *  \param section the new section
+         */
+        void add_section(AsmSection* section)
+        {
+            __sections.push_back(section);
+        }
+
+        /*! Get last macro section
+         *
+         *  \return an AsmSection or nullptr
+         */
+        AsmSection* get_last_section()
+        {
+            if(__sections.size() > 0)
+                return __sections[__sections.size() - 1];
+
+            return nullptr;
+        }
 };
 
 class AsmParser : public File
@@ -158,6 +301,8 @@ class AsmParser : public File
 
         std::vector<std::string> __modules;
 
+        std::vector<AsmMacro*> __macros;
+
         std::vector<AsmSection*> __sections;
 
         /*! Parse the file and store all the keywords for futher management
@@ -166,68 +311,148 @@ class AsmParser : public File
          */
         void __parser()
         {
-            int current_section_index = -1;
+            bool macro_block = false;
 
-            // Read buffer content and parse data
+            /* ---------------------------------------
+             *  Read buffer content
+             * --------------------------------------- */
+
             for(std::string buffer_line : get_buffer()) {
 
                 // Check semicolon for comments lines
                 std::size_t semicolon = reduce(buffer_line).find_first_of(';');
+                // Check percent for macro lines
+                std::size_t percent = reduce(buffer_line).find_first_of('%');
 
-                // Avoid to read commented line
-                if(semicolon > 0) {
+                /* ---------------------------------------
+                 *  Only read uncommented lines
+                 * --------------------------------------- */
+
+                if(reduce(buffer_line).length() > 0 and semicolon > 0) {
+                    // Reduce buffer_line
+                    buffer_line = reduce(buffer_line);
+
+                    // Detect a semicolon in the line
+                    if(semicolon != std::string::npos)
+                        buffer_line = reduce(buffer_line.substr(0, semicolon));
 
                     // Check colon for labels and conditions
-                    std::size_t colon = reduce(buffer_line).find_first_of(':');
-                    std::size_t space = reduce(buffer_line).find_first_of(' ');
+                    std::size_t colon = buffer_line.find_first_of(':');
+                    std::size_t space = buffer_line.find_first_of(' ');
 
-                    // A label has been spotted
+                    /* ---------------------------------------
+                     *  Detect a colon character
+                     * --------------------------------------- */
+
                     if(colon != std::string::npos and space == std::string::npos) {
-                        std::cout << buffer_line << std::endl;
+                        AsmLabel* label = new AsmLabel(
+                            buffer_line.substr(0, colon));
+
+                        if(!macro_block) {
+                            AsmSection* section = get_last_section();
+                            label->set_position(section->get_instructions().size());
+
+                            section->add_label(label);
+                        }
+                        else {
+                            AsmSection* section = get_last_macro()->get_last_section();
+                            label->set_position(section->get_instructions().size());
+
+                            section->add_label(label);
+                        }
                     }
 
-                    // No label here, sorry
+                    /* ---------------------------------------
+                     *  Detect a percent character
+                     * --------------------------------------- */
+
+                    else if(percent != std::string::npos) {
+
+                        // Split elements in line
+                        std::vector<std::string> line = split(buffer_line);
+
+                        if(line[0] == "%macro") {
+                            macro_block = true;
+
+                            if(line.size() > 1) {
+                                __macros.push_back(new AsmMacro(line[1]));
+                            }
+                        }
+
+                        if(line[0] == "%endmacro") {
+                            macro_block = false;
+                        }
+                    }
+
+                    /* ---------------------------------------
+                     *  Normal line
+                     * --------------------------------------- */
+
                     else {
 
                         // Avoid to have a comma between two words whitout space
                         std::replace(
                             buffer_line.begin(), buffer_line.end(), ',', ' ');
 
-                        // Detect a semicolon in the line
-                        if(semicolon != std::string::npos)
-                            buffer_line = buffer_line.substr(0, semicolon);
-
                         // Split elements in line
                         std::vector<std::string> line = split(buffer_line);
 
-                        // Avoid to manipulate empty lines
+                        /* ---------------------------------------
+                         *  Avoid to manipulate empty lines
+                         * --------------------------------------- */
+
                         if(line.size() > 0) {
 
-                            // Store program name
+                            // Transform first keyword to lowercase
+                            std::transform(
+                                line[0].begin(), line[0].end(),
+                                line[0].begin(), ::tolower);
+
+                            /* ---------------------------------------
+                             *  Global
+                             * --------------------------------------- */
+
                             if(line[0] == "global") {
                                 __name = line[1];
                             }
 
-                            // Store modules
+                            /* ---------------------------------------
+                             *  Extern
+                             * --------------------------------------- */
+
                             else if(line[0] == "extern") {
                                 __modules.push_back(line[1]);
                             }
 
-                            // Store sections data
+                            /* ---------------------------------------
+                             *  Section
+                             * --------------------------------------- */
+
                             else if(line[0] == "section") {
                                 // Remove the dot at the beggining of the string
                                 std::string label = line[1].substr(
                                     1, line[1].length());
 
-                                __sections.push_back(new AsmSection(label));
-
-                                // Get current section position in storage
-                                current_section_index = __sections.size() - 1;
+                                if(!macro_block) {
+                                    __sections.push_back(
+                                        new AsmSection(label));
+                                }
+                                else {
+                                    get_last_macro()->add_section(
+                                        new AsmSection(label));
+                                }
                             }
 
-                            // Instructions
+                            /* ---------------------------------------
+                             *  Instruction
+                             * --------------------------------------- */
+
                             else if(line.size() > 0) {
                                 std::vector<std::string> parameters;
+
+                                // Remove last colon in variable name
+                                if(colon != std::string::npos)
+                                    line[0] = line[0].substr(0, colon);
 
                                 AsmInstruction* instruction = new AsmInstruction(
                                     line[0]);
@@ -239,8 +464,18 @@ class AsmParser : public File
                                 }
 
                                 // Store instruction with parameters in data
-                                __sections[current_section_index]->add_instruction(
-                                    instruction);
+                                if(!macro_block) {
+                                    AsmSection* section = get_last_section();
+
+                                    if(section != nullptr)
+                                        section->add_instruction(instruction);
+                                }
+                                else {
+                                    AsmSection* section = get_last_macro()->get_last_section();
+
+                                    if(section != nullptr)
+                                        section->add_instruction(instruction);
+                                }
                             }
                         }
                     }
@@ -280,6 +515,27 @@ class AsmParser : public File
             return __modules;
         }
 
+        /*! Get program macros
+         *
+         *  \return a vector of AsmMacro
+         */
+        std::vector<AsmMacro*> get_macros()
+        {
+            return __macros;
+        }
+
+        /*! Get last macro
+         *
+         *  \return an AsmMacro or nullptr
+         */
+        AsmMacro* get_last_macro()
+        {
+            if(__macros.size() > 0)
+                return __macros[__macros.size() - 1];
+
+            return nullptr;
+        }
+
         /*! Get program sections
          *
          *  \return a vector of AsmSection
@@ -287,6 +543,18 @@ class AsmParser : public File
         std::vector<AsmSection*> get_sections()
         {
             return __sections;
+        }
+
+        /*! Get last section
+         *
+         *  \return an AsmSection or nullptr
+         */
+        AsmSection* get_last_section()
+        {
+            if(__sections.size() > 0)
+                return __sections[__sections.size() - 1];
+
+            return nullptr;
         }
 };
 

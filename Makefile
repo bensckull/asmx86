@@ -57,6 +57,10 @@ link:
 	g++ $(CPPFLAGS) $(FILES) -o $(NAME) -I.
 	@echo
 
+doxygen:
+	$(call colorecho,"Generate" $(NAME) "doc")
+	doxygen asmx86doc
+
 checkdirs: $(BUILD_DIR)
 	$(call colorecho,"Check variables")
 	@echo \
