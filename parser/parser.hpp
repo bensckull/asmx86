@@ -205,6 +205,9 @@ class AsmParser : public File
 
                                 // Store parameters
                                 if(line.size() > 1) {
+                                    // Avoid to split a string between quotation
+                                    line = asm_join_message(line);
+
                                     for(unsigned int i = 1; i < line.size(); ++i)
                                         instruction->add_parameter(line[i]);
                                 }
