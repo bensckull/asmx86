@@ -18,6 +18,7 @@
  *
  *  \author BroFreedom <jdoe1337@gmx.fr>
  *  \author Hanan6 <hanan.najim6@gmail.com>
+ *  \author Hanan6 <adnane.mounassib@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
@@ -32,6 +33,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 
 /* --------------------------------------------------------------------------
  *  Functions
@@ -164,5 +166,44 @@ inline std::vector<std::string> asm_join_message(std::vector<std::string> & data
 
     return new_data;
 }
+/*! Verify if it is a memory address
+ *
+ *  \param data a string
+ *
+ *  \return true if the string is a memory address 
+ */
+bool ifMemory(std::string str)
+	{
+		return str.find("[")!=std::string::npos;
+	}
+
+/*! Verify if it is a integer
+ *
+ *  \param data a string
+ *
+ *  \return true if the string is a nomber
+ */
+
+bool ifInt(std::string str)
+	{
+		int i;
+   		std::istringstream istr(str);
+ 		return (istr >> i) && !(istr >> str);
+
+	}
+
+/*! Verify if it is a Register
+ *
+ *  \param data a string
+ *
+ *  \return true if the string it's a register  
+ */
+
+bool ifRegister(std::string str)
+	{
+		return !ifMemory(str)&&!ifInt(str);
+	}
+
+
 
 #endif

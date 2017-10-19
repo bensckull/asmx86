@@ -40,21 +40,24 @@ class AsmRegister
     private:
         std::string __label;
 
-        std::string __value;
+        int __value;
+
+	int __operandSize;
 
     public:
         /*! Constructor
          *
          *  \param label the Register label
          */
-        AsmRegister(const std::string& label): __label(label) {}
+        AsmRegister(const std::string& label, int operandSize): 
+		__label(label), __operandSize(operandSize){}
 
         /*! Constructor
          *
          *  \param name the register name
          *  \param value the register value
          */
-        AsmRegister(const std::string& label, const std::string& value):
+        AsmRegister(const std::string& label, int value):
             __label(label), __value(value) {}
 
         /*! Set register
@@ -79,7 +82,7 @@ class AsmRegister
          *
          *  \param value 
          */
-        void set_value(const unsigned int & value)
+        void set_value(int value)
         {
             __value = value;
         }
@@ -91,6 +94,23 @@ class AsmRegister
         int get_value()
         {
             return __value;
+        }
+	/*! Set the operand size (16 for AX BX.., 32 for EAX EBX..., 64 for RAX RBX...) value
+         *
+         *  \ value 
+         */
+        void set_operandSize(int operandSize)
+        {
+            __operandSize = operandSize;
+        }
+
+        /*! Get the operand size value
+         *
+         *  \return the value
+         */
+        int get_operandSize()
+        {
+            return __operandSize;
         }
 
 };
