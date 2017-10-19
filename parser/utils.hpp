@@ -18,7 +18,7 @@
  *
  *  \author BroFreedom <jdoe1337@gmx.fr>
  *  \author Hanan6 <hanan.najim6@gmail.com>
- *  \author Hanan6 <adnane.mounassib@gmail.com>
+ *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
