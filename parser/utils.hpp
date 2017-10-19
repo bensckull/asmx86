@@ -22,6 +22,9 @@
  *  \date october 2017
  */
 
+#ifndef __ASMX__UTILS__
+#define __ASMX__UTILS__
+
 /* --------------------------------------------------------------------------
  *  Modules
  * -------------------------------------------------------------------------- */
@@ -43,7 +46,7 @@
  *
  * \note https://stackoverflow.com/a/1798170
  */
-std::string trim(
+inline std::string trim(
     const std::string& str,
     const std::string& whitespace = " \t")
 {
@@ -66,7 +69,7 @@ std::string trim(
  *
  * \note https://stackoverflow.com/a/1798170
  */
-std::string reduce(
+inline std::string reduce(
     const std::string& str,
     const std::string& fill = " ",
     const std::string& whitespace = " \t")
@@ -92,7 +95,7 @@ std::string reduce(
  *
  * \return a vector of string
  */
-std::vector<std::string> split(
+inline std::vector<std::string> split(
     const std::string& str,
     const std::string& separator = " ")
 {
@@ -126,7 +129,7 @@ std::vector<std::string> split(
  *
  *  \return a vector of string
  */
-std::vector<std::string> asm_join_message(std::vector<std::string> & data)
+inline std::vector<std::string> asm_join_message(std::vector<std::string> & data)
 {
     std::vector<std::string> new_data;
 
@@ -161,3 +164,5 @@ std::vector<std::string> asm_join_message(std::vector<std::string> & data)
 
     return new_data;
 }
+
+#endif
