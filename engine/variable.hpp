@@ -14,7 +14,7 @@
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
 
-/*! \file register.hpp
+/*! \file variable.hpp
  *
  *  \author Hanan6 <hanan.najim6@gmail.com>
  *  \version 1.0
@@ -34,6 +34,7 @@ using namespace std;
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */
+
 
 class AsmVariable
 {
@@ -135,6 +136,60 @@ class AsmVariable
             __id=id;
         }
 
+};
+
+class AsmVariableCollection 
+{
+    private:
+        
+        vector<AsmVariable*> __variables;
+
+    public:
+    
+        /*! Constructor */
+        AsmVariableCollection(){}
+        
+        /*! Constructor
+         *
+         *  \param var the variables vector
+         */
+        AsmVariableCollection(vector<AsmVariable*> var)
+                              :__variables(var){}
+                              
+        /*! Get the collection
+         *
+         *  \return variables vector
+         */
+        vector<AsmVariable*>  get_variables()
+        {
+            return __variables;
+        }
+        
+        /*! Get a new variables
+         *
+         *  \param variable new variables
+         */
+        void add_variable(AsmVariable* variable)
+        {
+            __variables.push_back(variable);
+        }
+        
+        /*! check if the string is a name of variable ?
+         *
+         *  \param nameVariable
+         *  \return variable if yes else return null
+         */
+        
+        AsmVariable* findVariable(string  nameVariable)
+        {
+           for (auto var:__variables)
+           {
+            if (var->get_name() == nameVariable) return var;
+           }
+           return NULL ;
+        }
+    
+    
 };
 
 #endif // __ASMX__VARIABLE__
