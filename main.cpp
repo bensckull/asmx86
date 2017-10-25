@@ -24,7 +24,13 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
+string a,b,c;
+a=extractVariable("[a]");
+b=extractVariable("[b]");
+c=extractVariable("[plouf]");
+cout<<a<<endl;
+cout<<b<<endl;
+cout<<c<<endl;
 
- 
     return EXIT_SUCCESS;
 }

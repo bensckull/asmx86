@@ -16,6 +16,7 @@
  
  /*! \file mul.hpp
  *
+ *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \author Hanan6 <hanan.najim6@gmail.com>
  *  \version 1.0
  *  \date october 2017
@@ -32,8 +33,10 @@
 #include <string>
 #include <vector>
 
-
-
+#include "engine/register.hpp"
+#include "parser/utils.h"
+#include "engine/stack.hpp"
+#include "engine/variable.h"
 
 /* --------------------------------------------------------------------------
  *  Functions
@@ -50,9 +53,29 @@ class AsmMul: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         {}
         
         
-        void mul()
+        void mul(std::string source)
         {
-        
+		int eax;
+		eax = findRegister("eax")->get_value();
+		//edx = (get_registers())["edx"]->get_value();  
+        		if(ifInt(source){
+				int src = std::stoi(source);
+				eax = eax * src;
+				(findRegister("edx")->set_value(eax);			
+			}
+			if(ifRegister(source){
+				int src = findRegister(source)->get_value();
+				eax = eax * src;
+				(findRegister("edx")->set_value(eax);				
+			}
+			if(ifMemory(source){
+				int size2 = exctractSize(source);
+				int src = AsmStack::get_value(size2);
+				eax = eax * src;
+				(findRegister("edx")->set_value(eax);
+			}
+		
+        	}
            /*  traitements de la fonctions mul( parametre )
              
              pour changer la valeur d'un registre i : 

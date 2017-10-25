@@ -172,7 +172,7 @@ inline std::vector<std::string> asm_join_message(std::vector<std::string> & data
  *
  *  \return true if the string is a memory address 
  */
-bool ifMemory(std::string str)
+inline bool ifMemory(std::string str)
 	{
 		return str.find("[")!=std::string::npos;
 	}
@@ -184,11 +184,30 @@ bool ifMemory(std::string str)
  *  \return true if the string is a nomber
  */
 
-bool ifInt(std::string str)
+/*AsmStack toMemory(std::string str)
+	{
+		
+	}*/
+
+/*! Verify if it is a integer
+ *
+ *  \param data a string
+ *
+ *  \return true if the string is a nomber
+ */
+
+inline bool ifInt(std::string str)
 	{
 		int i;
    		std::istringstream istr(str);
  		return (istr >> i) && !(istr >> str);
+
+	}
+
+inline int toInt(std::string str)
+	{
+		int src = std::stoi(str);
+		return src;
 
 	}
 
@@ -199,11 +218,70 @@ bool ifInt(std::string str)
  *  \return true if the string it's a register  
  */
 
-bool ifRegister(std::string str)
+
+/*AsmRegister toRegister(std::string str, AsmRegister reg)
+	{
+            switch (str) {
+		case "ax": return tab[0]; 
+		case "bx": return tab[1];
+		case "cx": return tab[2];
+		case "dx": return tab[3];
+		case "eax": return tab[4];
+		case "ebx": return tab[5];
+		case "ecx": return tab[6];
+		case "edx": return tab[7];
+		case "rax": return tab[8];
+		case "rbx": return tab[9];
+		case "rcx": return tab[10];
+		case "rdx": return tab[11];
+
+		if (str == reg.get_label()){
+			return reg;
+             }
+	}*/
+
+inline bool ifRegister(std::string str)
 	{
 		return !ifMemory(str)&&!ifInt(str);
 	}
 
 
+inline int extractSize(std::string str)
+{
+	std::size_t foundP = str.find_first_of("+");
+	std::size_t foundM = str.find_first_of("-");
+        std::string n;		
+	int i;
+	if( foundP!=std::string::npos){ 
+		n = str.substr(foundP+1, (str.size()-1)-(foundP+1));		
+		i=toInt(n);
+		return i; }
+	else if(foundM!=std::string::npos){ 
+		n = str.substr(foundM+1, (str.size()-1)-(foundM+1));		
+		i=toInt(n);
+		return -i;}
+	else {return 0;}
+}
+
+inline std::string extractVariable(std::string str)
+{
+	std::string s;
+	std::size_t search = str.find_first_of("[");
+	if( search!=std::string::npos){	
+		s = str.substr(1,(str.size()-1)-1);				
+	}
+	return s;
+}
+
+
+inline bool ifStack(std::string str)
+{
+	return str.find("[ebp")!=std::string::npos || str.find("[esp")!=std::string::npos;
+}
+
+inline bool ifVariabe(std::string str)
+{
+	return ifMemory(str) && !ifStack(str);
+}
 
 #endif
