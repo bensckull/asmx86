@@ -31,6 +31,7 @@
 
 #include <string>
 
+
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */
@@ -42,23 +43,16 @@ class AsmRegister
 
         int __value;
 
-	int __operandSize;
+	    int __size;
 
     public:
         /*! Constructor
          *
          *  \param label the Register label
          */
-        AsmRegister(const std::string& label, int operandSize): 
-		__label(label), __operandSize(operandSize){}
+        AsmRegister(const std::string& label,int value, int size): 
+		__label(label),__value(value), __size(size){}
 
-        /*! Constructor
-         *
-         *  \param name the register name
-         *  \param value the register value
-         */
-        AsmRegister(const std::string& label, int value):
-            __label(label), __value(value) {}
 
         /*! Set register
          *
@@ -95,24 +89,91 @@ class AsmRegister
         {
             return __value;
         }
-	/*! Set the operand size (16 for AX BX.., 32 for EAX EBX..., 64 for RAX RBX...) value
+	    /*! Set the size (2 for AX BX.., 4 for EAX EBX...,8 for RAX RBX...) value
          *
          *  \ value 
          */
-        void set_operandSize(int operandSize)
+        void set_size(int size)
         {
-            __operandSize = operandSize;
+            __size = size;
         }
 
-        /*! Get the operand size value
+        /*! Get the size value
          *
          *  \return the value
          */
-        int get_operandSize()
+        int get_size()
         {
-            return __operandSize;
+            return __size;
         }
 
+};
+
+class AsmRegisterCollection 
+{
+    private:
+        
+        std::vector<AsmRegister*> __registers;
+
+    public:
+    
+        /*! Constructor */
+        AsmRegisterCollection(){}
+        
+        /*! Constructor
+         *
+         *  \param reg the registers vector
+         */
+        AsmRegisterCollection(std::vector<AsmRegister*> reg):__registers(reg){}
+        
+        /*! Get the collection
+         *
+         *  \return registers vector
+         */    
+        std::vector<AsmRegister*>  get_registers()
+        {
+            return __registers;
+        }
+
+        /*! check if the string is a name of register ?
+         *
+         *  \param nameRegister
+         *  \return register if yes else return null
+         */
+        AsmRegister* findRegister(std::string nameRegister)
+        {
+           for (auto reg:__registers)
+           {
+            if (reg->get_label() == nameRegister) return reg;
+           }
+           return NULL ;
+        }
+     
+        /* Initialize registers */
+        void init_registers()
+        {
+            __registers.push_back(new AsmRegister("eax",0,4));
+            __registers.push_back(new AsmRegister("ebx",0,4));
+            __registers.push_back(new AsmRegister("ecx",0,4));
+            __registers.push_back(new AsmRegister("edx",0,4));
+            __registers.push_back(new AsmRegister("edx",0,4));
+            __registers.push_back(new AsmRegister("esi",0,4));
+            __registers.push_back(new AsmRegister("edi",0,4));
+            __registers.push_back(new AsmRegister("ebp",0,4));
+            __registers.push_back(new AsmRegister("esp",0,4));
+            
+            __registers.push_back(new AsmRegister("ax",0,2));
+            __registers.push_back(new AsmRegister("bx",0,2));
+            __registers.push_back(new AsmRegister("cx",0,2));
+            __registers.push_back(new AsmRegister("dx",0,2));
+            __registers.push_back(new AsmRegister("dx",0,2));
+            __registers.push_back(new AsmRegister("si",0,2));
+            __registers.push_back(new AsmRegister("di",0,2));
+            __registers.push_back(new AsmRegister("bp",0,2));
+            __registers.push_back(new AsmRegister("sp",0,2));
+                    
+        }
+    
 };
 
 #endif // __ASMX__REGISTER__
