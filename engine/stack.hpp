@@ -47,8 +47,8 @@ class AsmStack
     
         map<int,int> __ebp;
         map<int,int> __esp;
-        int __pointerP;  
-        int __pointerV; 
+        int __pointer;  
+
         
     public:
       
@@ -62,25 +62,11 @@ class AsmStack
         *
         */
          
-        void pushP(int value,int size)
+        void push(int value,int size)
         {          
-            __pointerP +=size;
-            __ebp.insert(std::pair<int,int>(__pointerP, value));
+            __pointer +=size;
+            __ebp.insert(std::pair<int,int>(__pointer, value));
               
-        } 
-        
-        /*! Add local variables to the stack (ebp)
-         *
-         * \param adr the address of the variable (a:1 ,msg:2,..)
-         * \param size the size of value (2(16 bits)s,4(32 bits),..)
-         *
-         */
-                
-        void pushV(int adr,int size) 
-        {          
-            __pointerV +=size;
-            __ebp.insert(std::pair<int,int>(-__pointerV,adr));
-                                                             
         } 
         
         /*! Copy ebp into esp    */
@@ -93,11 +79,9 @@ class AsmStack
             __esp.clear();
             for (auto it:__ebp)
             {
-                if (it.first>0)
-                {
-                    __esp.insert(std::pair<int,int>(-rit->first,it.second));
-                    rit= next(rit);
-                }
+                __esp.insert(std::pair<int,int>(-rit->first,it.second));
+                rit= next(rit);
+                
             }                  
         }
         
@@ -108,7 +92,8 @@ class AsmStack
         {     
             int value = __ebp.at((--__ebp.end())->first);
             __ebp.erase(--__ebp.end());
-            __register->set_value(value);     
+            __register->set_value(value); 
+             
         } 
         
         /*! Empty the stack  */
