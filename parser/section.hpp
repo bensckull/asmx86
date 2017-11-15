@@ -17,6 +17,7 @@
 /*! \file section.hpp
  *
  *  \author BroFreedom <jdoe1337@gmx.fr>
+ *  \author BroFreedom <hanan.najim6@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
@@ -104,6 +105,21 @@ class AsmSection {
         std::vector<AsmLabel*> get_labels()
         {
             return __labels;
+        }
+        
+         /*! search label by name
+         *
+         *  \param  NameLabel
+         *  \return Label 
+         */
+         
+        AsmLabel * find_label(std::string NameLabel)
+        {
+           for (auto lab:__labels)
+           {
+            if (lab->get_name() == NameLabel) return lab;
+           }
+           return NULL;
         }
 };
 
