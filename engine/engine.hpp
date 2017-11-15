@@ -31,6 +31,7 @@
 #include "variable.hpp"
 #include "stack.hpp"
 #include "library/mul.hpp"
+#include "library/jmp.hpp"
 
 
 using namespace std;
@@ -43,6 +44,8 @@ class AsmEngine: public AsmParser
         
          AsmVariableCollection * __variables;
          AsmRegisterCollection * __registers;
+
+        
         
         
         /*  Create a new variable 
@@ -91,26 +94,64 @@ class AsmEngine: public AsmParser
         
         /*  Start instruction block
          *  
-         *  \note this function call the defined functions from library (mov,mul,..) 
+         *  \note this function call the defined functions from library (mov,mul,jmp,..) 
          *  
          */
-        void start()
-        {
-              for (AsmInstruction * instruction:get_sections()[1]->get_instructions())
+        
+         bool stop=false;
+         void start(int position)
+        {                    
+            int size_instruction = (get_sections()[1]->get_instructions().size()) ;              
+            for (int i=position ; i<size_instruction;i++)
             {
-               string name = instruction->get_name() ;
+               if(!stop) 
+              {
+                              
+                if (i == size_instruction-1) stop = true;
                
-               if (name.find("mul") != string::npos)
-               {
+                string name = get_sections()[1]->get_instructions()[i]->get_name() ;
+                
+                if (name.find_first_of("j") != string::npos)
+                {
+                   AsmJmp * jmp = new AsmJmp(__registers->get_registers());
+                   bool ok =false;
+                                    
+		           if(name == "jmp") ok = jmp->jmp();
+		           if(name == "jge") ok = jmp->jge();    
+		           if(name == "jle") ok = jmp->jle();
+		           if(name == "jg") ok = jmp->jg();
+		           if(name == "jl") ok = jmp->jl();
+		           
+		           if (ok)   jump(i);                       
+                  
+                }
+               
+                if (name.find("mul") != string::npos)
+                {
                          
-                AsmMul * mul = new AsmMul(__registers->get_registers(),
-		                                  __variables->get_variables());
-		                                  
-		        mul->mul();        
-               
-               }
+                    /*AsmMul * mul = new AsmMul(__registers->get_registers(),
+		                                        __variables->get_variables());
+		              mul->mul(parameters); */       
+                }              
+
+              }
             }
             
+        }
+        
+        /*  Jump to the instructions label 
+         *  
+         *  \param index the index of the first instruction
+         *  
+         */
+        void jump(int index)
+        {
+            string label = get_sections()[1]->get_instructions()[index]->get_parameters()[0];
+                    
+            int position = get_sections()[1]->find_label(label)->get_position();
+                    
+            start(position);
+        
         }
 	
 	public:
@@ -120,14 +161,9 @@ class AsmEngine: public AsmParser
          *  \param path asm file path
          */ 
 		AsmEngine(const std::string& path):AsmParser(path)
-		{
-		   
-		   init();  
-		   start();
-		   
-		   //cout << (__variables->get_variables())[0]->get_name() << endl	   
-		   // cout << (__registers->findRegister("eax"))->get_value() << endl;
-	
+		{		   
+		   init(); 
+		   start(0);
 		}	
     	
 };
