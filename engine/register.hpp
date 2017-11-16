@@ -171,7 +171,16 @@ class AsmRegisterCollection
             __registers.push_back(new AsmRegister("di",0,2));
             __registers.push_back(new AsmRegister("bp",0,2));
             __registers.push_back(new AsmRegister("sp",0,2));
-                    
+            
+            // Les indicateurs FLAGS register
+             
+             __registers.push_back(new AsmRegister("CF",0,2));
+             __registers.push_back(new AsmRegister("ZF",0,2));
+             __registers.push_back(new AsmRegister("PF",0,2));
+             __registers.push_back(new AsmRegister("OF",0,2));
+             __registers.push_back(new AsmRegister("SF",0,2));
+          
+                     
         }
     
 };
