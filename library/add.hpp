@@ -14,7 +14,7 @@
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
  
- /*! \file mul.hpp
+ /*! \file add.hpp
  *
  *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \version 1.0

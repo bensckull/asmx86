@@ -14,7 +14,7 @@
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
 
-/*! \file mov.hpp
+/*! \file and.hpp
  *
  *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \version 1.0
@@ -63,26 +63,26 @@ class AsmAnd:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 			int boolean;
 			if(ifInt(source){
 				int src = std::stoi(source);
-				boolean = src & dest;
+				boolean = src && dest;
 				AsmStack::push(boolean,size);			
 			}
 			if(ifRegister(source){
 				int src = findRegister(source)->get_value();
 				int size2 = findRegister(source)->get_size();
-				boolean = src & dest;
+				boolean = src && dest;
 				AsmStack::push(boolean,size2);				
 			}
 			if(ifMemory(source){
 				int size2 = exctractSize(source);
 				int src = AsmStack::get_value(size2);
-				boolean = src & dest;
+				boolean = src && dest;
 				AsmStack::push(boolean,size2);
 			}						
 		}else if (ifRegister(destination)){
 			int dest = findRegister(destination)->get_value();
 			if(ifInt(source){
 				int src = toInt(source);
-				boolean = src & dest;
+				boolean = src && dest;
 				findRegister(destination)->set_value(boolean);			
 			}
 			if(ifRegister(source){
@@ -92,7 +92,7 @@ class AsmAnd:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 			if(ifMemory(source){
 				int size = exctractSize(source);
 				int dest = AsmStack::get_value(size);
-				boolean = src & dest;
+				boolean = src && dest;
 				findRegister(destination)->set_value(boolean);
 			}
 		

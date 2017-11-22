@@ -14,7 +14,7 @@
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
  
- /*! \file mul.hpp
+ /*! \file div.hpp
  *
  *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \version 1.0
@@ -98,5 +98,5 @@ class AsmDiv: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 
 };
 
-git 
+
 #endif //__ASMX__Div__

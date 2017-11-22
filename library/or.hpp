@@ -13,98 +13,92 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
- 
- /*! \file sub.hpp
+
+/*! \file or.hpp
  *
  *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
 
-
-#ifndef __ASMX__Sub__
-#define __ASMX__Sub__
+#ifndef __ASMX__Or__
+#define __ASMX__Or__
 
 /* --------------------------------------------------------------------------
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include <string>
-#include <vector>
-
 #include "engine/register.hpp"
 #include "parser/utils.h"
 #include "engine/stack.hpp"
 #include "engine/variable.h"
-
 /* --------------------------------------------------------------------------
- *  Functions
- * -------------------------------------------------------------------------- */
+ *  Class
+ * -------------------------------------------------------------------------- */                  
 
-
-class AsmSub: public AsmRegisterCollection,AsmVariableCollection , AsmStack
+class AsmOr:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
   
 
     public:
+
+	 AsmOr(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+        {}
         /*! Constructor
          *
          *  \param name the function name
          */
-	AsmSub(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
-        {}
+        AsmOr():{}
 
         /*! Set label
          *
          *  \param name the label string
          */
-        void sub(std::string destination, std::string source)
+        void or(std::string destination, std::string source)
         {
 		if(ifMemory(destination)){
 			int size = exctractSize(destination);
 			int dest = AsmStack::get_value(size);
+			int boolean;
 			if(ifInt(source){
 				int src = std::stoi(source);
-				dest -= src;
-				AsmStack::push(src,size);		
+				boolean = src || dest;
+				AsmStack::push(boolean,size);			
 			}
 			if(ifRegister(source){
 				int src = findRegister(source)->get_value();
 				int size2 = findRegister(source)->get_size();
-				dest -= src;
-				AsmStack::push(dest, size2);					
+				boolean = src || dest;
+				AsmStack::push(boolean,size2);				
 			}
 			if(ifMemory(source){
 				int size2 = exctractSize(source);
 				int src = AsmStack::get_value(size2);
-				dest -= src;
-				AsmStack::push(dest, size2);	
+				boolean = src || dest;
+				AsmStack::push(boolean,size2);
 			}						
-		}
-		if (ifRegister(destination)){
+		}else if (ifRegister(destination)){
 			int dest = findRegister(destination)->get_value();
 			if(ifInt(source){
 				int src = toInt(source);
-				dest -= src;	
-				findRegister(destination)->set_value(dest);			
+				boolean = src || dest;
+				findRegister(destination)->set_value(boolean);			
 			}
 			if(ifRegister(source){
-				int src = findRegister(source)->get_value();
-				dest -= src;
-				findRegister(destination)->set_value(dest);			
+				int src = findRegister(source)->get_value();				
+				findRegister(destination)->set_value(boolean);			
 			}
 			if(ifMemory(source){
-				int size = extractSize (src);
-				int src = AsmStack::get_value(size);
-				dest -= src
-				findRegister(destination)->set_value(dest);			
+				int size = exctractSize(source);
+				int dest = AsmStack::get_value(size);
+				boolean = src || dest;
+				findRegister(destination)->set_value(boolean);
 			}
 		
-        	}
+        }
 
 
 };
 
-#endif // __ASMX__Sub__
-
+#endif
