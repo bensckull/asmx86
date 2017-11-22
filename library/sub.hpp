@@ -33,9 +33,9 @@
 #include <vector>
 
 #include "engine/register.hpp"
-#include "parser/utils.h"
+#include "parser/utils.hpp"
 #include "engine/stack.hpp"
-#include "engine/variable.h"
+#include "engine/variable.hpp"
 
 /* --------------------------------------------------------------------------
  *  Functions
@@ -62,21 +62,21 @@ class AsmSub: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         void sub(std::string destination, std::string source)
         {
 		if(ifMemory(destination)){
-			int size = exctractSize(destination);
+			int size = extractSize(destination);
 			int dest = AsmStack::get_value(size);
-			if(ifInt(source){
+			if(ifInt(source)){
 				int src = std::stoi(source);
 				dest -= src;
 				AsmStack::push(src,size);		
 			}
-			if(ifRegister(source){
+			if(ifRegister(source)){
 				int src = findRegister(source)->get_value();
 				int size2 = findRegister(source)->get_size();
 				dest -= src;
 				AsmStack::push(dest, size2);					
 			}
-			if(ifMemory(source){
-				int size2 = exctractSize(source);
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
 				int src = AsmStack::get_value(size2);
 				dest -= src;
 				AsmStack::push(dest, size2);	
@@ -84,26 +84,23 @@ class AsmSub: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 		}
 		if (ifRegister(destination)){
 			int dest = findRegister(destination)->get_value();
-			if(ifInt(source){
+			if(ifInt(source)){
 				int src = toInt(source);
 				dest -= src;	
 				findRegister(destination)->set_value(dest);			
 			}
-			if(ifRegister(source){
+			if(ifRegister(source)){
 				int src = findRegister(source)->get_value();
 				dest -= src;
 				findRegister(destination)->set_value(dest);			
 			}
-			if(ifMemory(source){
-				int size = extractSize (src);
+			if(ifMemory(source)){
+				int size = extractSize(source);
 				int src = AsmStack::get_value(size);
-				dest -= src
+				dest -= src;
 				findRegister(destination)->set_value(dest);			
 			}
-		
         	}
-
-
 };
 
 #endif // __ASMX__Sub__

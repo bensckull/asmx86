@@ -29,9 +29,9 @@
  * -------------------------------------------------------------------------- */
 
 #include "engine/register.hpp"
-#include "parser/utils.h"
+#include "parser/utils.hpp"
 #include "engine/stack.hpp"
-#include "engine/variable.h"
+#include "engine/variable.hpp"
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */                  
@@ -42,14 +42,14 @@ class AsmMov:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 
     public:
 
-	 AsmMov(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+	AsmMov(vector<AsmRegister*> reg,vector<AsmVariable*> var):
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
         /*! Constructor
          *
          *  \param name the function name
          */
-        AsmMov():{}
+        AsmMov();
 
         /*! Set label
          *
@@ -58,35 +58,36 @@ class AsmMov:public AsmRegisterCollection,AsmVariableCollection , AsmStack
         void mov(std::string destination, std::string source)
         {
 		if(ifMemory(destination)){
-			int size = exctractSize(destination);
-			int dest = AsmStack::get_value(size);
-			if(ifInt(source){
+			int size = extractSize(destination);
+			//int dest = AsmStack::get_value(size);
+			if(ifInt(source)){
 				int src = std::stoi(source);
 				AsmStack::push(src,size);			
 			}
-			if(ifRegister(source){
+			if(ifRegister(source)){
 				int src = findRegister(source)->get_value();
 				int size2 = findRegister(source)->get_size();
 				AsmStack::push(src,size2);				
 			}
-			if(ifMemory(source){
-				int size2 = exctractSize(source);
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
 				int src = AsmStack::get_value(size2);
 				AsmStack::push(src,size2);
 			}						
 		}else if (ifRegister(destination)){
 			//int dest = findRegister(destination)->get_value();
-			if(ifInt(source){
+			if(ifInt(source)){
 				int src = toInt(source);
 				findRegister(destination)->set_value(src);			
 			}
-			if(ifRegister(source){
-				int src = findRegister(source)->get_value();				
+			if(ifRegister(source)){
+			     int src=findRegister(source)->get_value();				
 				findRegister(destination)->set_value(src);			
 			}
-			if(ifMemory(source){
-				int size = exctractSize(source);
-				int dest = AsmStack::get_value(size);
+			if(ifMemory(source)){
+				//int size = exctractSize(source);
+				//int dest = AsmStack::get_value(size);
+				int src = findRegister(source)->get_value();
 				findRegister(destination)->set_value(src);
 			}
 		

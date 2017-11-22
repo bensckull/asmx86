@@ -33,9 +33,9 @@
 #include <vector>
 
 #include "engine/register.hpp"
-#include "parser/utils.h"
+#include "parser/utils.hpp"
 #include "engine/stack.hpp"
-#include "engine/variable.h"
+#include "engine/variable.hpp"
 
 /* --------------------------------------------------------------------------
  *  Functions
@@ -65,34 +65,30 @@ class AsmDiv: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 		int eax,edx;
 		eax = findRegister("eax")->get_value();
 		edx = findRegister("eax")->get_value();  
-        		if(ifInt(source){
+        		if(ifInt(source)){
 				int src = std::stoi(source);
 				eax = eax * src;
 				edx = eax % src;
-				(findRegister("eax")->set_value(eax);
-				(findRegister("edx")->set_value(edx);				
+				findRegister("eax")->set_value(eax);
+				findRegister("edx")->set_value(edx);				
 			}
-			if(ifRegister(source){
+			if(ifRegister(source)){
 				int src = findRegister(source)->get_value();
 				eax = eax * src;
 				edx = eax % src;
-				(findRegister("eax")->set_value(eax);
-				(findRegister("edx")->set_value(edx);				
-			}
-			if(ifMemory(source){
-				int size2 = exctractSize(source);
+				findRegister("eax")->set_value(eax);
+				findRegister("edx")->set_value(edx);				
+			
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
 				int src = AsmStack::get_value(size2);
 				eax = eax * src;
 				edx = eax % src;
-				(findRegister("eax")->set_value(eax);
-				(findRegister("edx")->set_value(edx);				
+				findRegister("eax")->set_value(eax);
+				findRegister("edx")->set_value(edx);				
 			}
 		
-        	}
-    
-
-                            
-             
+        	}          
         }
         
 

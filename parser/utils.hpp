@@ -284,4 +284,14 @@ inline bool ifVariabe(std::string str)
 	return ifMemory(str) && !ifStack(str);
 }
 
+inline int toInt32(bool boolean){
+    int a;
+    if(boolean){
+        a=1;
+    }else{
+        a=0;
+    } 
+    return a;
+}
+
 #endif

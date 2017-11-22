@@ -29,9 +29,9 @@
  * -------------------------------------------------------------------------- */
 
 #include "engine/register.hpp"
-#include "parser/utils.h"
+#include "parser/utils.hpp"
 #include "engine/stack.hpp"
-#include "engine/variable.h"
+#include "engine/variable.hpp"
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */                  
@@ -49,7 +49,7 @@ class AsmInc:public AsmRegisterCollection,AsmVariableCollection , AsmStack
          *
          *  \param name the function name
          */
-        AsmInc():{}
+        //AsmInc():{}
 
         /*! Set label
          *

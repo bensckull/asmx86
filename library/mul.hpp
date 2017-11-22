@@ -34,9 +34,9 @@
 #include <vector>
 
 #include "engine/register.hpp"
-#include "parser/utils.h"
+#include "parser/utils.hpp"
 #include "engine/stack.hpp"
-#include "engine/variable.h"
+#include "engine/variable.hpp"
 
 /* --------------------------------------------------------------------------
  *  Functions
@@ -58,58 +58,25 @@ class AsmMul: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 		int eax;
 		eax = findRegister("eax")->get_value();
 		//edx = (get_registers())["edx"]->get_value();  
-        		if(ifInt(source){
+        		if(ifInt(source)){
 				int src = std::stoi(source);
 				eax = eax * src;
-				(findRegister("edx")->set_value(eax);			
+				findRegister("edx")->set_value(eax);			
 			}
-			if(ifRegister(source){
+			if(ifRegister(source)){
 				int src = findRegister(source)->get_value();
 				eax = eax * src;
-				(findRegister("edx")->set_value(eax);				
+				findRegister("edx")->set_value(eax);				
 			}
-			if(ifMemory(source){
-				int size2 = exctractSize(source);
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
 				int src = AsmStack::get_value(size2);
 				eax = eax * src;
-				(findRegister("edx")->set_value(eax);
+				findRegister("edx")->set_value(eax);
 			}
 		
-        	}
-           /*  traitements de la fonctions mul( parametre )
-             
-             pour changer la valeur d'un registre i : 
-             
-                (get_registers())[i]->set_value("value") ;
-             
-             pour recuperer la valeur d'un registre i  : 
-             
-                (get_registers())[i]->get_value() ;
-             
-             pour trouver le registre du parametre (si le parametre est un registre): 
-             
-                findRegister("eax")->set_value(13); 
-                
-             !! Idem pour les variables 
-             
-             pour recuperer une valeur de stack " [ebp+4] " :
-             
-                get_value(4)
-                
-             !! pour remplir le stack faut faire des push(value,size)
-             
-             pour appler la fonction :
-             
-                dans le engine.hpp la fonction start 
-                         
-             
-             */
-
-                            
-             
         }
-        
-
+	
 };
 
 

@@ -29,9 +29,9 @@
  * -------------------------------------------------------------------------- */
 
 #include "engine/register.hpp"
-#include "parser/utils.h"
+#include "parser/utils.hpp"
 #include "engine/stack.hpp"
-#include "engine/variable.h"
+#include "engine/variable.hpp"
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */                  
@@ -42,57 +42,65 @@ class AsmOr:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 
     public:
 
-	 AsmOr(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+	AsmOr(vector<AsmRegister*> reg,vector<AsmVariable*> var):
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
         /*! Constructor
          *
          *  \param name the function name
          */
-        AsmOr():{}
+        //AsmOr():{}
 
         /*! Set label
          *
          *  \param name the label string
          */
-        void or(std::string destination, std::string source)
+        void oR(std::string destination, std::string source)
         {
+		int boolean;
+		bool boolean2;
 		if(ifMemory(destination)){
-			int size = exctractSize(destination);
+			int size = extractSize(destination);
 			int dest = AsmStack::get_value(size);
-			int boolean;
-			if(ifInt(source){
+			if(ifInt(source)){
 				int src = std::stoi(source);
-				boolean = src || dest;
+				boolean2 = src || dest;
+				boolean = toInt32(boolean2);
 				AsmStack::push(boolean,size);			
 			}
-			if(ifRegister(source){
+			if(ifRegister(source)){
 				int src = findRegister(source)->get_value();
 				int size2 = findRegister(source)->get_size();
-				boolean = src || dest;
+				boolean2 = src || dest;
+				boolean = toInt32(boolean2);
 				AsmStack::push(boolean,size2);				
 			}
-			if(ifMemory(source){
-				int size2 = exctractSize(source);
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
 				int src = AsmStack::get_value(size2);
-				boolean = src || dest;
+				boolean2 = src || dest;
+				boolean = toInt32(boolean2);
 				AsmStack::push(boolean,size2);
 			}						
 		}else if (ifRegister(destination)){
 			int dest = findRegister(destination)->get_value();
-			if(ifInt(source){
+			if(ifInt(source)){
 				int src = toInt(source);
-				boolean = src || dest;
+				boolean2 = src || dest;
+				boolean = toInt32(boolean2);
 				findRegister(destination)->set_value(boolean);			
 			}
-			if(ifRegister(source){
-				int src = findRegister(source)->get_value();				
+			if(ifRegister(source)){
+				int src = findRegister(source)->get_value();
+				boolean2 = src || dest;
+				boolean = toInt32(boolean2);				
 				findRegister(destination)->set_value(boolean);			
 			}
-			if(ifMemory(source){
-				int size = exctractSize(source);
-				int dest = AsmStack::get_value(size);
-				boolean = src || dest;
+			if(ifMemory(source)){
+				int size = extractSize(source);
+				int src = AsmStack::get_value(size);
+				boolean2 = src || dest;
+				boolean = toInt32(boolean2);
 				findRegister(destination)->set_value(boolean);
 			}
 		
