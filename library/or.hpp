@@ -41,19 +41,21 @@ class AsmOr:public AsmRegisterCollection,AsmVariableCollection , AsmStack
   
 
     public:
-
-	AsmOr(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
-        {}
-        /*! Constructor
+	/*! Constructor
          *
          *  \param name the function name
          */
+	AsmOr(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+        {}
+        
         //AsmOr():{}
 
-        /*! Set label
+        /*! function Or
          *
-         *  \param name the label string
+         *  \or function for or instruction :
+         *  \or destination, source
+         *  \destination = destination OR source
          */
         void oR(std::string destination, std::string source)
         {

@@ -40,19 +40,20 @@ class AsmAnd:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
 
     public:
-
-	AsmAnd(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
-        {}
         /*! Constructor
          *
          *  \param name the function name
          */
-        //AsmAnd():{}
 
-        /*! Set label
+	AsmAnd(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+        {}
+
+        /*! function and 
          *
-         *  \param name the label string
+         *  \and function for and instruction :
+         *  \and destination, source
+         *  \destination = destination AND source
          */
         void anD(std::string destination, std::string source)
         {

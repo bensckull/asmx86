@@ -52,7 +52,12 @@ class AsmMul: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
         
-        
+        /*! function mul
+         *
+         *  \mul function for multiplication instruction :
+         *  \mul source
+         *  \edx = eax * source
+         */
         void mul(std::string source)
         {
 		int eax;

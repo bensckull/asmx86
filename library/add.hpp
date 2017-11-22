@@ -55,9 +55,11 @@ class AsmAdd: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
 
-        /*! Set label
+        /*! function add 
          *
-         *  \param name the label string
+         *  \add function for add instruction :
+         *  \add destination, source
+         *  \destination = destination + source
          */
         void add(std::string destination, std::string source)
         {

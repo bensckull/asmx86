@@ -41,19 +41,18 @@ class AsmNeg:public AsmRegisterCollection,AsmVariableCollection , AsmStack
   
 
     public:
-
-	 AsmNeg(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
-        {}
         /*! Constructor
          *
          *  \param name the function name
          */
-        //AsmNeg():{}
-
-        /*! Set label
+	 AsmNeg(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+        {}
+        /*! function neg
          *
-         *  \param name the label string
+         *  \negation function for neg instruction :
+         *  \neg destination
+         *  \destination = - destination
          */
         void neg(std::string destination)
         {						

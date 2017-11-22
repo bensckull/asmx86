@@ -55,9 +55,11 @@ class AsmSub: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
 
-        /*! Set label
+        /*! function Sub
          *
-         *  \param name the label string
+         *  \sub function for sub instruction :
+         *  \sub destination, source
+         *  \destination = destination - source
          */
         void sub(std::string destination, std::string source)
         {

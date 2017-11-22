@@ -56,9 +56,12 @@ class AsmDiv: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
         
-         /*! Set label
+          /*! function div
          *
-         *  \param name the label string
+         *  \div function for division instruction :
+         *  \div source
+         *  \eax = eax * source
+         *  \edx = eax % source
          */
         void div(std::string source)
         {

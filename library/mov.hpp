@@ -41,19 +41,21 @@ class AsmMov:public AsmRegisterCollection,AsmVariableCollection , AsmStack
   
 
     public:
-
-	AsmMov(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
-        {}
-        /*! Constructor
+ 	/*! Constructor
          *
          *  \param name the function name
          */
+	AsmMov(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+        {}
+      
         AsmMov();
 
-        /*! Set label
+         /*! function mov
          *
-         *  \param name the label string
+         *  \mov function for mov instruction :
+         *  \mov destination, source
+         *  \destination = source
          */
         void mov(std::string destination, std::string source)
         {

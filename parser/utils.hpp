@@ -204,6 +204,12 @@ inline bool ifInt(std::string str)
 
 	}
 
+/*! Transform a string into int
+ *
+ *  \param data a string
+ *
+ *  \return int 
+ */
 inline int toInt(std::string str)
 	{
 		int src = std::stoi(str);
@@ -245,7 +251,12 @@ inline bool ifRegister(std::string str)
 		return !ifMemory(str)&&!ifInt(str);
 	}
 
-
+/*! Extract the register size example :[ebp+4] 4 is the size
+ *
+ *  \param data a string
+ *
+ *  \return data int  
+ */
 inline int extractSize(std::string str)
 {
 	std::size_t foundP = str.find_first_of("+");
@@ -262,6 +273,12 @@ inline int extractSize(std::string str)
 		return -i;}
 	else {return 0;}
 }
+/*! Extract the variable example [var] return "var"
+ *
+ *  \param data a string
+ *
+ *  \return data a string 
+ */
 
 inline std::string extractVariable(std::string str)
 {
@@ -274,16 +291,34 @@ inline std::string extractVariable(std::string str)
 }
 
 
+/*! Verify if it is a stack address
+ *
+ *  \param data a string
+ *
+ *  \return true if the string is an address  
+ */
 inline bool ifStack(std::string str)
 {
 	return str.find("[ebp")!=std::string::npos || str.find("[esp")!=std::string::npos;
 }
 
+/*! Verify if it is a Variable
+ *
+ *  \param data a string
+ *
+ *  \return true if the string is a variable
+ */
 inline bool ifVariabe(std::string str)
 {
 	return ifMemory(str) && !ifStack(str);
 }
 
+/*! Transform bool into int 1 if true 0 if false
+ *
+ *  \param data a string
+ *
+ *  \return 1 if true 0 else
+ */
 inline int toInt32(bool boolean){
     int a;
     if(boolean){

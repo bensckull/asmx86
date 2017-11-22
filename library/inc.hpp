@@ -42,18 +42,20 @@ class AsmInc:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 
     public:
 
-	 AsmInc(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
-        {}
         /*! Constructor
          *
          *  \param name the function name
          */
-        //AsmInc():{}
 
-        /*! Set label
+	 AsmInc(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+        {}
+   
+              /*! function inc
          *
-         *  \param name the label string
+         *  \inc function for inc instruction :
+         *  \inc destination
+         *  \destination++
          */
         void inc(std::string destination)
         {						
