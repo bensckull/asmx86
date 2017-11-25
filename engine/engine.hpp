@@ -129,9 +129,9 @@ class AsmEngine: public AsmParser
                 if (name.find("mul") != string::npos)
                 {
                          
-                    /*AsmMul * mul = new AsmMul(__registers->get_registers(),
+                    AsmMul * mul = new AsmMul(__registers->get_registers(),
 		                                        __variables->get_variables());
-		              mul->mul(parameters); */       
+		              /*mul->mul(parameters);  */     
                 }              
 
               }

@@ -54,6 +54,7 @@ class AsmMul: public AsmRegisterCollection,AsmVariableCollection , AsmStack
         
         /*! function mul
          *
+	 *  \parameters source and size (2,4 or 8 for 16bits,32bits and 64bits) 
          *  \mul function for multiplication instruction :
          *  \mul source
          *  \edx = eax * source
