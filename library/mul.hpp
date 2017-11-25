@@ -19,7 +19,7 @@
  *  \author Adnan44 <adnane.mounassib@gmail.com>
  *  \author Hanan6 <hanan.najim6@gmail.com>
  *  \version 1.0
- *  \date october 2017
+ *  \date november 2017
  */
 
 
@@ -58,11 +58,29 @@ class AsmMul: public AsmRegisterCollection,AsmVariableCollection , AsmStack
          *  \mul source
          *  \edx = eax * source
          */
-        void mul(std::string source)
+        void mul(std::string source, int size)
         {
-		int eax;
-		eax = findRegister("eax")->get_value();
-		//edx = (get_registers())["edx"]->get_value();  
+		if (size==2){
+		int ax = findRegister("ax")->get_value();  
+        		if(ifInt(source)){
+				int src = std::stoi(source);
+				ax = ax * src;
+				findRegister("dx")->set_value(ax);			
+			}
+			if(ifRegister(source)){
+				int src = findRegister(source)->get_value();
+				ax = ax * src;
+				findRegister("dx")->set_value(ax);				
+			}
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
+				int src = AsmStack::get_value(size2);
+				ax = ax * src;
+				findRegister("dx")->set_value(ax);
+			}
+                }
+		if (size==4){
+		int eax = findRegister("eax")->get_value();  
         		if(ifInt(source)){
 				int src = std::stoi(source);
 				eax = eax * src;
@@ -79,6 +97,26 @@ class AsmMul: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 				eax = eax * src;
 				findRegister("edx")->set_value(eax);
 			}
+                }
+		if (size==8){
+		int rax = findRegister("rax")->get_value();  
+        		if(ifInt(source)){
+				int src = std::stoi(source);
+				rax = rax * src;
+				findRegister("rdx")->set_value(rax);			
+			}
+			if(ifRegister(source)){
+				int src = findRegister(source)->get_value();
+				rax = rax * src;
+				findRegister("rdx")->set_value(rax);				
+			}
+			if(ifMemory(source)){
+				int size2 = extractSize(source);
+				int src = AsmStack::get_value(size2);
+				rax = rax * src;
+				findRegister("rdx")->set_value(rax);
+			}
+                }
 		
         }
 	

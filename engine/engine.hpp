@@ -30,7 +30,8 @@
 #include "register.hpp"
 #include "variable.hpp"
 #include "stack.hpp"
-#include "library/sub.hpp"
+#include "library/jmp.hpp"
+#include "library/mul.hpp"
 
 
 using namespace std;
