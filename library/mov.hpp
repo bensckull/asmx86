@@ -16,7 +16,7 @@
 
 /*! \file mov.hpp
  *
- *  \author Adnan44 <adnane.mounassib@gmail.com>
+ *  \author Hanan6 <hanan.najim6@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
@@ -34,65 +34,94 @@
 #include "engine/variable.hpp"
 /* --------------------------------------------------------------------------
  *  Class
- * -------------------------------------------------------------------------- */                  
-
+ * -------------------------------------------------------------------------- */  
+ 
+ 
 class AsmMov:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
   
-
+    private:
+    
+     AsmStack * __stack;
     public:
- 	/*! Constructor
+ 	
+ 	
+ 	    /*! Constructor
          *
-         *  \param name the function name
+         *  \param reg the Registers Collection
+         *  \param var the variables Collection
+         *  \param stack
+         *  
          */
-	AsmMov(vector<AsmRegister*> reg,vector<AsmVariable*> var):
-        AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
+	    AsmMov(vector<AsmRegister*> reg,vector<AsmVariable*> var,AsmStack * stack):
+        AsmRegisterCollection(reg),AsmVariableCollection(var),__stack(stack)
         {}
-      
-        AsmMov();
-
-         /*! function mov
+        
+        
+        /* Mov function set the destination value with the source one
          *
-         *  \mov function for mov instruction :
-         *  \mov destination, source
-         *  \destination = source
+         *  \destination param1
+         *  \source param2
+         *  
          */
-        void mov(std::string destination, std::string source)
+          void mov(std::string destination, std::string source)
         {
-		if(ifMemory(destination)){
-			int size = extractSize(destination);
-			//int dest = AsmStack::get_value(size);
-			if(ifInt(source)){
-				int src = std::stoi(source);
-				AsmStack::push(src,size);			
-			}
-			if(ifRegister(source)){
-				int src = findRegister(source)->get_value();
-				int size2 = findRegister(source)->get_size();
-				AsmStack::push(src,size2);				
-			}
-			if(ifMemory(source)){
-				int size2 = extractSize(source);
-				int src = AsmStack::get_value(size2);
-				AsmStack::push(src,size2);
-			}						
-		}else if (ifRegister(destination)){
-			//int dest = findRegister(destination)->get_value();
-			if(ifInt(source)){
-				int src = toInt(source);
-				findRegister(destination)->set_value(src);			
-			}
-			if(ifRegister(source)){
-			     int src=findRegister(source)->get_value();				
-				findRegister(destination)->set_value(src);			
-			}
-			if(ifMemory(source)){
-				//int size = exctractSize(source);
-				//int dest = AsmStack::get_value(size);
-				int src = findRegister(source)->get_value();
-				findRegister(destination)->set_value(src);
-			}
-		
+
+            int src = get_value(source);
+            
+            if(ifRegister(destination))
+                findRegister(destination)->set_value(src);
+                
+            if(ifMemory(destination))
+            {
+                int size = extractSize(destination);
+                 __stack->set_value(size,src);
+            }
+	
+        } 
+        
+         /* Return the real value of the parameter 
+         *
+         *  \param parameter parameter to evaluate 
+         *  \note get value from  register or  stack
+         *  \note if the parameter is variable get the id that reference to the variable address in
+         *   the stack 
+         *  \return int value
+         *  
+         */
+        
+        int get_value(std::string parameter)
+        {
+         
+        
+            
+           if(ifRegister(parameter)){
+           
+            if(findRegister(parameter) != NULL) 
+                return  findRegister(parameter)->get_value(); 
+      
+            else
+			    return findVariable(parameter)->get_id() ;
+           }
+                    			  
+	       if(ifInt(parameter))
+	        return std::stoi(parameter);
+	        
+	       	if(ifMemory(parameter)){
+	       	
+	       	    if (ifStack(parameter)) 
+	       	    {
+			         
+			         int size = extractSize(parameter);
+				     return __stack->get_value(size); 
+			    }
+			    else
+			    {		
+				     parameter = extractVariable(parameter);
+				     return std::stoi(findVariable(parameter)->get_value()) ;	
+			   	}		
+			}				        		  			
+	       return 0;				
         }
 
 
