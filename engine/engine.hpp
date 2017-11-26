@@ -31,8 +31,10 @@
 #include "variable.hpp"
 #include "stack.hpp"
 #include "library/jmp.hpp"
-#include "library/mul.hpp"
-
+#include "library/mov.hpp"
+#include "library/cmp.hpp"
+#include "library/push.hpp"
+#include "library/extern.hpp"
 
 using namespace std;
 
@@ -44,6 +46,8 @@ class AsmEngine: public AsmParser
         
          AsmVariableCollection * __variables;
          AsmRegisterCollection * __registers;
+         AsmStack * __stack;
+ 
 
         
         
@@ -85,6 +89,7 @@ class AsmEngine: public AsmParser
         {
             __variables = new  AsmVariableCollection();
 		    __registers = new  AsmRegisterCollection();
+		    __stack = new  AsmStack();
 		    
             init_variables();
              
@@ -126,13 +131,65 @@ class AsmEngine: public AsmParser
                   
                 }
                
-                if (name.find("mul") != string::npos)
+                if (name.find("cmp") != string::npos)
                 {
                          
-                    AsmMul * mul = new AsmMul(__registers->get_registers(),
-		                                        __variables->get_variables());
-		              /*mul->mul(parameters);  */     
-                }              
+                    AsmCmp * cmp = new AsmCmp(__registers->get_registers(),
+		                                      __variables->get_variables() ,__stack );
+                    
+                    string value1 =get_sections()[1]->get_instructions()[i]->get_parameters()[0];  
+		            string value2 =get_sections()[1]->get_instructions()[i]->get_parameters()[1];
+		                                     
+		            cmp->cmp(value1,value2);    
+                } 
+                
+                
+                if (name.find("mov") != string::npos)
+                {
+                         
+                    AsmMov * mov = new AsmMov(__registers->get_registers(),
+		                                      __variables->get_variables() ,__stack );
+		                                      
+		              string dest =get_sections()[1]->get_instructions()[i]->get_parameters()[0];  
+		              string src =get_sections()[1]->get_instructions()[i]->get_parameters()[1];                         
+		              mov->mov(dest,src);      
+                }  
+                
+                if (name.find("push") != string::npos)
+                {
+                         
+                     AsmPush * push = new AsmPush(__registers->get_registers(),
+		                                          __variables->get_variables() ,__stack );
+	                  
+	                  if(get_sections()[1]->get_instructions()[i]->get_parameters().size()>0)
+	                  {
+		                string value =get_sections()[1]->get_instructions()[i]->get_parameters()[0];  
+		                
+		                push->Push(value);
+		              }      
+                }  
+                
+                if (name.find("call") != string::npos)
+                {
+                      
+                    string param = get_sections()[1]->get_instructions()[i]->get_parameters()[0];   
+                    if (get_sections()[1]->find_label(param) != NULL)
+                    {
+                      start( get_sections()[1]->find_label(param)->get_position() );
+                    }
+                    else
+                    {
+                        AsmExtern * function = new AsmExtern(__variables->get_variables(),__stack);
+		                                         
+                        if(param=="printf")
+                        {
+                            cout  << function->printf() << endl ;
+                        
+                        }
+                    }
+                }
+                
+             
 
               }
             }
@@ -163,7 +220,7 @@ class AsmEngine: public AsmParser
 		AsmEngine(const std::string& path):AsmParser(path)
 		{		   
 		   init(); 
-		   start(0);
+		   start( get_sections()[1]->find_label("main")->get_position() );		   
 		}	
     	
 };
