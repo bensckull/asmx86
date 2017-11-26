@@ -156,7 +156,7 @@ inline std::vector<std::string> asm_join_message(std::vector<std::string> & data
         }
         // No quotation but still between quotations
         else if (message.size() > 0) {
-            message += element;
+            message += element + " ";
         }
         // No quotation at all
         else {
@@ -177,17 +177,7 @@ inline bool ifMemory(std::string str)
 		return str.find("[")!=std::string::npos;
 	}
 
-/*! Verify if it is a integer
- *
- *  \param data a string
- *
- *  \return true if the string is a nomber
- */
 
-/*AsmStack toMemory(std::string str)
-	{
-		
-	}*/
 
 /*! Verify if it is a integer
  *
@@ -217,34 +207,6 @@ inline int toInt(std::string str)
 
 	}
 
-/*! Verify if it is a Register
- *
- *  \param data a string
- *
- *  \return true if the string it's a register  
- */
-
-
-/*AsmRegister toRegister(std::string str, AsmRegister reg)
-	{
-            switch (str) {
-		case "ax": return tab[0]; 
-		case "bx": return tab[1];
-		case "cx": return tab[2];
-		case "dx": return tab[3];
-		case "eax": return tab[4];
-		case "ebx": return tab[5];
-		case "ecx": return tab[6];
-		case "edx": return tab[7];
-		case "rax": return tab[8];
-		case "rbx": return tab[9];
-		case "rcx": return tab[10];
-		case "rdx": return tab[11];
-
-		if (str == reg.get_label()){
-			return reg;
-             }
-	}*/
 
 inline bool ifRegister(std::string str)
 	{
