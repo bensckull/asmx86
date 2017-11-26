@@ -188,6 +188,21 @@ class AsmVariableCollection
            }
            return NULL ;
         }
+        
+        /*! Search a variable by id ?
+         *
+         *  \param id id variable
+         *  \return variable if yes else return null
+         */
+        
+        AsmVariable* findVariableById(int id)
+        {
+           for (auto var:__variables)
+           {
+            if (var->get_id() == id) return var;
+           }
+           return NULL ;
+        }
     
     
 };
