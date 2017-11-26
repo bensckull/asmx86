@@ -47,7 +47,7 @@ class AsmStack
     
         map<int,int> __ebp;
         map<int,int> __esp;
-        int __pointer;  
+        int __pointer=0;  
 
         
     public:
@@ -117,7 +117,7 @@ class AsmStack
         }
          
          
-        /*! modify the socked value 
+        /*! Modify the socked value 
          *
          *  \param address the address of value to modify
          *  \param Value the new value
@@ -144,6 +144,19 @@ class AsmStack
         {  
             return __esp;
         } 
+        
+         /*! Return the last inserted value in the stack and delete it  
+         *
+         *  \return the last inserted value 
+         *  
+         */
+        int top() 
+        {  
+           int value = __ebp.rbegin()->second ;
+           map<int,int>::iterator it = __ebp.end();
+           __ebp.erase(prev(it));
+           return value;
+        }
 
 };
 
