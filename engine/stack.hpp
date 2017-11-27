@@ -145,16 +145,16 @@ class AsmStack
             return __esp;
         } 
         
-         /*! Return the last inserted value in the stack and delete it  
+         /*! Return the indexed value by a reverse index in the stack 
          *
-         *  \return the last inserted value 
-         *  
+         *  \param rindex the reverse index
+         *
+         *  \return value   
          */
-        int top() 
+        int top(int rindex) 
         {  
-           int value = __ebp.rbegin()->second ;
            map<int,int>::iterator it = __ebp.end();
-           __ebp.erase(prev(it));
+           int value = (prev(it, rindex))->second ;
            return value;
         }
 
