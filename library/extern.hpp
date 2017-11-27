@@ -47,6 +47,7 @@ class AsmExtern: public AsmVariableCollection,AsmStack
    private:
     
      AsmStack * __stack;
+     int index=1;
     public:
     
  
@@ -69,11 +70,11 @@ class AsmExtern: public AsmVariableCollection,AsmStack
         string printf()
         {
           
-           string message = findVariableById(__stack->top())->get_value();
+           string message = findVariableById(__stack->top(index))->get_value();
        
            while (message.find("%") != string::npos)
            
-            message.replace(message.find("%"),2,to_string(__stack->top()));
+            message.replace(message.find("%"),2,to_string(__stack->top(++index)));
                     
             return message;
 
