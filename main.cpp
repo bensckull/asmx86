@@ -20,11 +20,21 @@
 
 #include "engine/engine.hpp"
 
-//using namespace std;
+using namespace std;
 
 int main(int argc, char **argv)
 {
+    cout << ">>> Start AsmEngine tests" << endl;
 
+    try
+    {
+        AsmEngine* engine = new AsmEngine("examples/test.asm");
+    }
+    catch(exception& error) {
+        cerr << " !! " << error.what() << endl;
+
+        return EXIT_FAILURE;
+    }
 
     return EXIT_SUCCESS;
 }

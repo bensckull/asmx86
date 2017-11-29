@@ -29,9 +29,6 @@
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include <vector>
-#include <string>
-
 #include "parser/label.hpp"
 #include "parser/instruction.hpp"
 
@@ -106,20 +103,22 @@ class AsmSection {
         {
             return __labels;
         }
-        
+
          /*! search label by name
          *
          *  \param  NameLabel
-         *  \return Label 
+         *  \return Label
          */
-         
-        AsmLabel * find_label(std::string NameLabel)
+
+        AsmLabel* find_label(std::string label)
         {
-           for (auto lab:__labels)
-           {
-            if (lab->get_name() == NameLabel) return lab;
-           }
-           return NULL;
+            for (auto current_label : __labels)
+            {
+                if (current_label->get_name() == label)
+                    return current_label;
+            }
+
+            return nullptr;
         }
 };
 

@@ -28,7 +28,6 @@
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include <string>
 #include <map>
 #include <stack>
 #include <vector>
@@ -38,121 +37,121 @@
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */
- 
+
 using namespace std;
 
-class AsmStack 
+class AsmStack
 {
     private:
-    
+
         map<int,int> __ebp;
         map<int,int> __esp;
-        int __pointer=0;  
+        int __pointer=0;
 
-        
+
     public:
-      
+
         AsmStack(){}
-        
+
        /*! add function parameters to the stack (ebp)
         *
-        * \param value the function parameter 
+        * \param value the function parameter
         * \param size the size of value (2(16 bits)s,4(32 bits),..)
         * \param pointerP the the address in the stack(ebp+4, ..)
         *
         */
-         
+
         void push(int value,int size)
-        {          
+        {
             __pointer +=size;
             __ebp.insert(std::pair<int,int>(__pointer, value));
-              
-        } 
-        
+
+        }
+
         /*! Copy ebp into esp    */
 
-     
-        void FillEsp() 
+
+        void FillEsp()
         {
-            map<int,int>::reverse_iterator rit=__ebp.rbegin(); 
+            map<int,int>::reverse_iterator rit=__ebp.rbegin();
             map<int,int>::iterator it;
             __esp.clear();
             for (auto it:__ebp)
             {
                 __esp.insert(std::pair<int,int>(-rit->first,it.second));
                 rit= next(rit);
-                
-            }                  
+
+            }
         }
-        
-        /*! Retrieve the contents of the top of the stack  
+
+        /*! Retrieve the contents of the top of the stack
          *  and transfer it to the register __ register
          */
         void popR(AsmRegister * __register)
-        {     
+        {
             int value = __ebp.at((--__ebp.end())->first);
             __ebp.erase(--__ebp.end());
-            __register->set_value(value); 
-             
-        } 
-        
+            __register->set_value(value);
+
+        }
+
         /*! Empty the stack  */
-       
-        
-        void pop() 
-        {  
+
+
+        void pop()
+        {
            __ebp.clear();
            __esp.clear();
-        } 
-        
+        }
+
        /*! get a value of the specified address
          *
-         * \param address the address of value 
+         * \param address the address of value
          * \return value
-         */ 
-        
-        int get_value(int address) 
-        {  
+         */
+
+        int get_value(int address)
+        {
             return __ebp.at(address);
         }
-         
-         
-        /*! Modify the socked value 
+
+
+        /*! Modify the socked value
          *
          *  \param address the address of value to modify
          *  \param Value the new value
          */
-        void set_value(int address,int value) 
-        {  
+        void set_value(int address,int value)
+        {
             __ebp.at(address)=value;
         }
-        
+
         /*! Get ebp
          *
          *  \return a map
          */
-        map<int,int> get_ebp() 
-        {  
+        map<int,int> get_ebp()
+        {
             return __ebp;
-        }  
-         
+        }
+
         /*! Get esp
         *
         *  \return a map
         */
-        map<int,int> get_esp() 
-        {  
+        map<int,int> get_esp()
+        {
             return __esp;
-        } 
-        
-         /*! Return the indexed value by a reverse index in the stack 
+        }
+
+         /*! Return the indexed value by a reverse index in the stack
          *
          *  \param rindex the reverse index
          *
-         *  \return value   
+         *  \return value
          */
-        int top(int rindex) 
-        {  
+        int top(int rindex)
+        {
            map<int,int>::iterator it = __ebp.end();
            int value = (prev(it, rindex))->second ;
            return value;

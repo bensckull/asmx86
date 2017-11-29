@@ -13,7 +13,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
- 
+
  /*! \file div.hpp
  *
  *  \author Adnan44 <adnane.mounassib@gmail.com>
@@ -29,12 +29,10 @@
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include <string>
-#include <vector>
-
-#include "engine/register.hpp"
 #include "parser/utils.hpp"
+
 #include "engine/stack.hpp"
+#include "engine/register.hpp"
 #include "engine/variable.hpp"
 
 /* --------------------------------------------------------------------------
@@ -43,7 +41,7 @@
 
 class AsmDiv: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
-    
+
 
     public:
 
@@ -51,14 +49,14 @@ class AsmDiv: public AsmRegisterCollection,AsmVariableCollection , AsmStack
          *
          *  \param name the function name
          */
-     
+
         AsmDiv(vector<AsmRegister*> reg,vector<AsmVariable*> var):
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
-        
+
           /*! function div
          *
-	 *  \parameters source and size (2 for 16bits 4 for 32bits and 8 for 64bits)
+     *  \parameters source and size (2 for 16bits 4 for 32bits and 8 for 64bits)
          *  \div function for division instruction :
          *  \div source
          *  \eax = eax * source
@@ -66,86 +64,86 @@ class AsmDiv: public AsmRegisterCollection,AsmVariableCollection , AsmStack
          */
         void div(std::string source, int size)
         {
-		//int eax,edx,ax,dx,rax,rdx;
-		if (size==2){
-		int ax = findRegister("ax")->get_value();
-		int dx = findRegister("dx")->get_value();
-        		if(ifInt(source)){
-				int src = std::stoi(source);
-				ax = ax * src;
-				dx = ax % src;
-				findRegister("ax")->set_value(ax);
-				findRegister("dx")->set_value(dx);				
-			}
-			if(ifRegister(source)){
-				int src = findRegister(source)->get_value();
-				ax = ax * src;
-				dx = ax % src;
-				findRegister("ax")->set_value(ax);
-				findRegister("dx")->set_value(dx);				
-			}
-			if(ifMemory(source)){
-				int size2 = extractSize(source);
-				int src = AsmStack::get_value(size2);
-				ax = ax * src;
-				dx = ax % src;
-				findRegister("ax")->set_value(ax);
-				findRegister("dx")->set_value(dx);				
-			}
-        	}                 
-		if (size==4){
-		        int eax = findRegister("eax")->get_value();
-		        int edx = findRegister("edx")->get_value();
-        		if(ifInt(source)){
-				int src = std::stoi(source);
-				eax = eax * src;
-				edx = eax % src;
-				findRegister("eax")->set_value(eax);
-				findRegister("edx")->set_value(edx);				
-			}
-			if(ifRegister(source)){
-				int src = findRegister(source)->get_value();
-				eax = eax * src;
-				edx = eax % src;
-				findRegister("eax")->set_value(eax);
-				findRegister("edx")->set_value(edx);				
-			}
-			if(ifMemory(source)){
-				int size2 = extractSize(source);
-				int src = AsmStack::get_value(size2);
-				eax = eax * src;
-				edx = eax % src;
-				findRegister("eax")->set_value(eax);
-				findRegister("edx")->set_value(edx);				
-			}
-               	if (size==8){
+        //int eax,edx,ax,dx,rax,rdx;
+        if (size==2){
+        int ax = findRegister("ax")->get_value();
+        int dx = findRegister("dx")->get_value();
+                if(ifInt(source)){
+                int src = std::stoi(source);
+                ax = ax * src;
+                dx = ax % src;
+                findRegister("ax")->set_value(ax);
+                findRegister("dx")->set_value(dx);
+            }
+            if(ifRegister(source)){
+                int src = findRegister(source)->get_value();
+                ax = ax * src;
+                dx = ax % src;
+                findRegister("ax")->set_value(ax);
+                findRegister("dx")->set_value(dx);
+            }
+            if(ifMemory(source)){
+                int size2 = extractSize(source);
+                int src = AsmStack::get_value(size2);
+                ax = ax * src;
+                dx = ax % src;
+                findRegister("ax")->set_value(ax);
+                findRegister("dx")->set_value(dx);
+            }
+            }
+        if (size==4){
+                int eax = findRegister("eax")->get_value();
+                int edx = findRegister("edx")->get_value();
+                if(ifInt(source)){
+                int src = std::stoi(source);
+                eax = eax * src;
+                edx = eax % src;
+                findRegister("eax")->set_value(eax);
+                findRegister("edx")->set_value(edx);
+            }
+            if(ifRegister(source)){
+                int src = findRegister(source)->get_value();
+                eax = eax * src;
+                edx = eax % src;
+                findRegister("eax")->set_value(eax);
+                findRegister("edx")->set_value(edx);
+            }
+            if(ifMemory(source)){
+                int size2 = extractSize(source);
+                int src = AsmStack::get_value(size2);
+                eax = eax * src;
+                edx = eax % src;
+                findRegister("eax")->set_value(eax);
+                findRegister("edx")->set_value(edx);
+            }
+                if (size==8){
                         int rax = findRegister("rax")->get_value();
-		        int rdx = findRegister("rdx")->get_value();
-        		if(ifInt(source)){
-				int src = std::stoi(source);
-				rax = rax * src;
-				rdx = rax % src;
-				findRegister("rax")->set_value(rax);
-				findRegister("rdx")->set_value(rdx);				
-			}
-			if(ifRegister(source)){
-				int src = findRegister(source)->get_value();
-				rax = rax * src;
-				rdx = rax % src;
-				findRegister("rax")->set_value(rax);
-				findRegister("rdx")->set_value(rdx);				
-			}
-			if(ifMemory(source)){
-				int size2 = extractSize(source);
-				int src = AsmStack::get_value(size2);
-				rax = rax * src;
-				rdx = rax % src;
-				findRegister("rax")->set_value(rax);
-				findRegister("rdx")->set_value(rdx);				
-			}
-        	}          
+                int rdx = findRegister("rdx")->get_value();
+                if(ifInt(source)){
+                int src = std::stoi(source);
+                rax = rax * src;
+                rdx = rax % src;
+                findRegister("rax")->set_value(rax);
+                findRegister("rdx")->set_value(rdx);
+            }
+            if(ifRegister(source)){
+                int src = findRegister(source)->get_value();
+                rax = rax * src;
+                rdx = rax % src;
+                findRegister("rax")->set_value(rax);
+                findRegister("rdx")->set_value(rdx);
+            }
+            if(ifMemory(source)){
+                int size2 = extractSize(source);
+                int src = AsmStack::get_value(size2);
+                rax = rax * src;
+                rdx = rax % src;
+                findRegister("rax")->set_value(rax);
+                findRegister("rdx")->set_value(rdx);
+            }
+            }
         }
-        
+
 
 };
 

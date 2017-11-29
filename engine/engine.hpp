@@ -13,7 +13,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
- 
+
  /*! \file engine.hpp
  *
  *  \author Hanan6 <hanan.najim6@gmail.com>
@@ -25,11 +25,12 @@
 #ifndef __ASMX__ENGINE__
 #define __ASMX__ENGINE__
 
-#include <map>
 #include "parser/parser.hpp"
-#include "register.hpp"
-#include "variable.hpp"
-#include "stack.hpp"
+
+#include "engine/register.hpp"
+#include "engine/variable.hpp"
+#include "engine/stack.hpp"
+
 #include "library/jmp.hpp"
 #include "library/mov.hpp"
 #include "library/cmp.hpp"
@@ -40,190 +41,367 @@ using namespace std;
 
 class AsmEngine: public AsmParser
 {
-     
-	private:
-     
-        
-         AsmVariableCollection * __variables;
-         AsmRegisterCollection * __registers;
-         AsmStack * __stack;
- 
+    private:
+        AsmVariableCollection* __variables;
 
-        
-        
-        
-        /*  Create a new variable 
+        AsmRegisterCollection* __registers;
+
+        AsmStack* __stack;
+
+        AsmSection* __data_section;
+        AsmSection* __main_section;
+
+        bool stop = false;
+
+        /*! Create a new variable
          *
-         *  \param instruction the instruction contains the variable informations 
-         *  \param id variable id 
+         *  \param instruction the instruction contains the variable informations
+         *  \param id variable id
          *
-         *  \ return AsmVariable
+         *  \return AsmVariable
          */
         AsmVariable* create_variable(AsmInstruction * instruction,int id)
         {
-  
             string _size = instruction->get_parameters()[0];
-            int size = (_size == "dd")? 4: (_size == "db")? 8:2;
-            
-            return new AsmVariable(id,instruction->get_name(),
-                                   instruction->get_parameters()[1],size);                               
+
+            int size = (_size == "dd") ? 4 : (_size == "db") ? 8 : 2;
+
+            return new AsmVariable(
+                id,instruction->get_name(),
+                instruction->get_parameters()[1],
+                size
+            );
         }
-        
-        /*  Add a new variable to variables collection 
-         *  
-         *  \note this function increment the id of variables 
-         *  
+
+        /*! Add a new variable to variables collection
+         *
+         *  \note this function increment the id of variables
+         *
          */
         void init_variables()
         {
-            int id =0;
-		    for (AsmInstruction * instruction:get_sections()[0]->get_instructions())
+            if(__data_section != nullptr)
             {
-                __variables->add_variable( create_variable(instruction,++id));
+                int id = 0;
+
+                for(AsmInstruction* instruction : __data_section->get_instructions())
+                {
+                    cout << "    :: Variable " << instruction->get_name() << endl;
+
+                    __variables->add_variable( create_variable(instruction,++id));
+                }
             }
         }
-        
-        /*  Initialize variables and registers  */ 
-              
+
+        /*  Initialize variables and registers  */
+
         void init()
         {
-            __variables = new  AsmVariableCollection();
-		    __registers = new  AsmRegisterCollection();
-		    __stack = new  AsmStack();
-		    
-            init_variables();
-             
-            __registers->init_registers();
-            
-        }
-        
-        /*  Start instruction block
-         *  
-         *  \note this function call the defined functions from library (mov,mul,jmp,..) 
-         *  
-         */
-        
-         bool stop=false;
-         void start(int position)
-        {                    
-            int size_instruction = (get_sections()[1]->get_instructions().size()) ;              
-            for (int i=position ; i<size_instruction;i++)
-            {
-               if(!stop) 
-              {
-                              
-                if (i == size_instruction-1) stop = true;
-               
-                string name = get_sections()[1]->get_instructions()[i]->get_name() ;
-                
-                if (name.find_first_of("j") != string::npos)
-                {
-                   AsmJmp * jmp = new AsmJmp(__registers->get_registers());
-                   bool ok =false;
-                                    
-		           if(name == "jmp") ok = jmp->jmp();
-		           if(name == "jge") ok = jmp->jge();    
-		           if(name == "jle") ok = jmp->jle();
-		           if(name == "jg") ok = jmp->jg();
-		           if(name == "jl") ok = jmp->jl();
-		           
-		           if (ok)   jump(i);                       
-                  
-                }
-               
-                if (name.find("cmp") != string::npos)
-                {
-                         
-                    AsmCmp * cmp = new AsmCmp(__registers->get_registers(),
-		                                      __variables->get_variables() ,__stack );
-                    
-                    string value1 =get_sections()[1]->get_instructions()[i]->get_parameters()[0];  
-		            string value2 =get_sections()[1]->get_instructions()[i]->get_parameters()[1];
-		                                     
-		            cmp->cmp(value1,value2);    
-                } 
-                
-                
-                if (name.find("mov") != string::npos)
-                {
-                         
-                    AsmMov * mov = new AsmMov(__registers->get_registers(),
-		                                      __variables->get_variables() ,__stack );
-		                                      
-		              string dest =get_sections()[1]->get_instructions()[i]->get_parameters()[0];  
-		              string src =get_sections()[1]->get_instructions()[i]->get_parameters()[1];                         
-		              mov->mov(dest,src);      
-                }  
-                
-                if (name.find("push") != string::npos)
-                {
-                         
-                     AsmPush * push = new AsmPush(__registers->get_registers(),
-		                                          __variables->get_variables() ,__stack );
-	                  
-	                  if(get_sections()[1]->get_instructions()[i]->get_parameters().size()>0)
-	                  {
-		                string value =get_sections()[1]->get_instructions()[i]->get_parameters()[0];  
-		                
-		                push->Push(value);
-		              }      
-                }  
-                
-                if (name.find("call") != string::npos)
-                {
-                      
-                    string param = get_sections()[1]->get_instructions()[i]->get_parameters()[0];   
-                    if (get_sections()[1]->find_label(param) != NULL)
-                    {
-                      start( get_sections()[1]->find_label(param)->get_position() );
-                    }
-                    else
-                    {
-                        AsmExtern * function = new AsmExtern(__variables->get_variables(),__stack);
-		                                         
-                        if(param=="printf")
-                        {
-                            cout  << function->printf() << endl ;
-                        
-                        }
-                    }
-                }
-                
-             
+            // Variables collection
+            __variables = new AsmVariableCollection();
+            // Registers collection
+            __registers = new AsmRegisterCollection();
+            // Stack structure
+            __stack = new AsmStack();
 
-              }
-            }
-            
+            // Program main section reference
+            __main_section = nullptr;
+            // Program data section reference
+            __data_section = nullptr;
         }
-        
-        /*  Jump to the instructions label 
-         *  
+
+        /*! Start instruction block
+         *
+         *  \note this function call the defined functions from library (mov,mul,jmp,..)
+         *
+         */
+
+        void start(int position)
+        {
+            bool main_loop = true;
+
+            cout << "--> Start instructions from position " << position << endl;
+
+            /* ---------------------------------------
+             *  Manage instructions
+             * --------------------------------------- */
+
+            vector<AsmInstruction*> instructions = __main_section->get_instructions();
+
+            cout << " -> Found " << instructions.size() << " instructions" << endl;
+
+            int index = position;
+
+            while(main_loop) {
+                // Instruction name
+                string name = instructions[index]->get_name();
+                // Instruction parameters
+                vector<string> parameters = instructions[index]->get_parameters();
+
+                cout << " -> Instruction " << name << endl;
+
+                /* ---------------------------------------
+                 *  JUMP instructions
+                 * --------------------------------------- */
+
+                if(name.find_first_of("j") != string::npos)
+                {
+                    if(parameters.size() == 1)
+                    {
+                        cout << "    :: Jump to ";
+                        cout << parameters[0] << endl;
+
+                        AsmJmp* jmp = new AsmJmp(
+                            __registers->get_registers()
+                        );
+
+                        if(name == "jmp" and jmp->jmp())
+                            jump(index);
+
+                        else if(name == "jge" and jmp->jge())
+                            jump(index);
+
+                        else if(name == "jle" and jmp->jle())
+                            jump(index);
+
+                        else if(name == "jg" and jmp->jg())
+                            jump(index);
+
+                        else if(name == "jl" and jmp->jl())
+                            jump(index);
+                    }
+
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+
+                /* ---------------------------------------
+                 *  CMP instructions
+                 * --------------------------------------- */
+
+                else if(name == "cmp")
+                {
+                    if(parameters.size() == 2)
+                    {
+                        cout << "    :: Compare ";
+                        cout << parameters[0] << " with ";
+                        cout << parameters[1] << endl;
+
+                        AsmCmp* cmp = new AsmCmp(
+                            __registers->get_registers(),
+                            __variables->get_variables(),
+                            __stack
+                        );
+
+                        cmp->cmp(parameters[0], parameters[1]);
+                    }
+
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+
+                /* ---------------------------------------
+                 *  MOV instructions
+                 * --------------------------------------- */
+
+                else if(name == "mov")
+                {
+                    if(parameters.size() == 2)
+                    {
+                        cout << "    :: Move ";
+                        cout << parameters[0] << " to ";
+                        cout << parameters[1] << endl;
+
+                        AsmMov* mov = new AsmMov(
+                            __registers->get_registers(),
+                            __variables->get_variables(),
+                            __stack
+                        );
+
+                        mov->mov(parameters[0], parameters[1]);
+                    }
+
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+
+                /* ---------------------------------------
+                 *  PUSH instructions
+                 * --------------------------------------- */
+
+                else if(name == "push")
+                {
+                    if(parameters.size() == 1)
+                    {
+                        cout << "    :: Push ";
+                        cout << parameters[0] << endl;
+
+                        AsmPush* push = new AsmPush(
+                            __registers->get_registers(),
+                            __variables->get_variables(),
+                            __stack
+                        );
+
+                        push->Push(parameters[0]);
+                    }
+
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+
+                /* ---------------------------------------
+                 *  CALL instructions
+                 * --------------------------------------- */
+
+                else if(name == "call")
+                {
+                    if(parameters.size() == 1)
+                    {
+                        cout << "    :: Call ";
+                        cout << parameters[0] << endl;
+
+                        AsmLabel* label = __main_section->find_label(
+                            parameters[0]
+                        );
+
+                        // This is a label
+                        if (label != nullptr)
+                        {
+                            start(label->get_position());
+                        }
+
+                        /*
+                        // This is a function
+                        else
+                        {
+                            AsmExtern* function = new AsmExtern(
+                                __variables->get_variables(),
+                                __stack
+                            );
+
+                            if(parameters[0].find("printf") != string::npos)
+                            {
+                                cout << "<<< " << function->printf() << endl;
+                            }
+                        }
+                        */
+                    }
+
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+
+                /* ---------------------------------------
+                 *  Manage while loop
+                 * --------------------------------------- */
+
+                ++index;
+
+                if(index >= instructions.size())
+                    main_loop = false;
+            }
+        }
+
+        /*! Jump to the instructions label
+         *
          *  \param index the index of the first instruction
-         *  
          */
         void jump(int index)
         {
-            string label = get_sections()[1]->get_instructions()[index]->get_parameters()[0];
-                    
-            int position = get_sections()[1]->find_label(label)->get_position();
-                    
-            start(position);
-        
+            vector<AsmInstruction*> instructions = __main_section->get_instructions();
+
+            if(index < 0 or index >= instructions.size())
+            {
+                throw runtime_error(
+                    "Cannot access to index " + index
+                );
+            }
+
+            // Instruction parameters
+            vector<string> parameters = instructions[index]->get_parameters();
+
+            if(parameters.size() > 0)
+            {
+                AsmLabel* label = __main_section->find_label(
+                    parameters[0]
+                );
+
+                if(label != nullptr)
+                {
+                    start(label->get_position());
+                }
+
+                else
+                {
+                    throw runtime_error(
+                        "Cannot access position for " + parameters[0]
+                    );
+                }
+            }
+
+            else
+            {
+                throw length_error(
+                    "Instructions structure is empty"
+                );
+            }
         }
-	
-	public:
-	
-	    /*! Constructor
+
+    public:
+        /*! Constructor
          *
          *  \param path asm file path
-         */ 
-		AsmEngine(const std::string& path):AsmParser(path)
-		{		   
-		   init(); 
-		   start( get_sections()[1]->find_label("main")->get_position() );		   
-		}	
-    	
-};
+         */
+        AsmEngine(const std::string& path):AsmParser(path)
+        {
+            // Manage main label position
+            int position = -1;
 
+            cout << "--> Initialize AsmEngine" << endl;
+            init();
+
+            cout << "--> Check sections" << endl;
+            for(AsmSection* section : get_sections())
+            {
+                cout << " -> Section " << section->get_name() << endl;
+
+                for(AsmLabel* label : section->get_labels())
+                {
+                    // Check main label
+                    if(label->get_name() == "main")
+                    {
+                        cout << "    :: Found label " << label->get_name() << endl;
+
+                        // Manage section reference
+                        __main_section = section;
+
+                        if(position != -1)
+                            cerr << " !! Already set main label " << endl;
+
+                        // Get main label position
+                        position = label->get_position();
+                    }
+                }
+
+                // Check data section
+                if(section->get_name() == "data")
+                {
+                    __data_section = section;
+
+                    // Initialize program variables
+                    init_variables();
+                    // Initialize program regiseters
+                    __registers->init_registers();
+                }
+            }
+
+            cout << "--> Check main position" << endl;
+            if(position != -1)
+                start(position);
+
+            else
+                cerr << "  ! No main label has been founded in this program" << endl;
+        }
+};
 
 #endif

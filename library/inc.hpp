@@ -28,17 +28,19 @@
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include "engine/register.hpp"
 #include "parser/utils.hpp"
+
 #include "engine/stack.hpp"
+#include "engine/register.hpp"
 #include "engine/variable.hpp"
+
 /* --------------------------------------------------------------------------
  *  Class
- * -------------------------------------------------------------------------- */                  
+ * -------------------------------------------------------------------------- */
 
 class AsmInc:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
-  
+
 
     public:
 
@@ -47,10 +49,10 @@ class AsmInc:public AsmRegisterCollection,AsmVariableCollection , AsmStack
          *  \param name the function name
          */
 
-	 AsmInc(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+     AsmInc(vector<AsmRegister*> reg,vector<AsmVariable*> var):
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
-   
+
               /*! function inc
          *
          *  \inc function for inc instruction :
@@ -58,12 +60,12 @@ class AsmInc:public AsmRegisterCollection,AsmVariableCollection , AsmStack
          *  \destination++
          */
         void inc(std::string destination)
-        {						
-		 if(ifRegister(destination)){
-			int dest = findRegister(destination)->get_value();
-			dest++;
-			findRegister(destination)->set_value(dest);					
-	
+        {
+         if(ifRegister(destination)){
+            int dest = findRegister(destination)->get_value();
+            dest++;
+            findRegister(destination)->set_value(dest);
+
         }
 
 

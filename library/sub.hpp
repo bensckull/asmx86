@@ -13,7 +13,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  * -------------------------------------------------------------------------- */
- 
+
  /*! \file sub.hpp
  *
  *  \author Adnan44 <adnane.mounassib@gmail.com>
@@ -29,12 +29,10 @@
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include <string>
-#include <vector>
-
-#include "engine/register.hpp"
 #include "parser/utils.hpp"
+
 #include "engine/stack.hpp"
+#include "engine/register.hpp"
 #include "engine/variable.hpp"
 
 /* --------------------------------------------------------------------------
@@ -44,14 +42,14 @@
 
 class AsmSub: public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
-  
+
 
     public:
         /*! Constructor
          *
          *  \param name the function name
          */
-	AsmSub(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+    AsmSub(vector<AsmRegister*> reg,vector<AsmVariable*> var):
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
 
@@ -63,46 +61,46 @@ class AsmSub: public AsmRegisterCollection,AsmVariableCollection , AsmStack
          */
         void sub(std::string destination, std::string source)
         {
-		if(ifMemory(destination)){
-			int size = extractSize(destination);
-			int dest = AsmStack::get_value(size);
-			if(ifInt(source)){
-				int src = std::stoi(source);
-				dest -= src;
-				AsmStack::push(src,size);		
-			}
-			if(ifRegister(source)){
-				int src = findRegister(source)->get_value();
-				int size2 = findRegister(source)->get_size();
-				dest -= src;
-				AsmStack::push(dest, size2);					
-			}
-			if(ifMemory(source)){
-				int size2 = extractSize(source);
-				int src = AsmStack::get_value(size2);
-				dest -= src;
-				AsmStack::push(dest, size2);	
-			}						
-		}
-		if (ifRegister(destination)){
-			int dest = findRegister(destination)->get_value();
-			if(ifInt(source)){
-				int src = toInt(source);
-				dest -= src;	
-				findRegister(destination)->set_value(dest);			
-			}
-			if(ifRegister(source)){
-				int src = findRegister(source)->get_value();
-				dest -= src;
-				findRegister(destination)->set_value(dest);			
-			}
-			if(ifMemory(source)){
-				int size = extractSize(source);
-				int src = AsmStack::get_value(size);
-				dest -= src;
-				findRegister(destination)->set_value(dest);			
-			}
-        	}
+        if(ifMemory(destination)){
+            int size = extractSize(destination);
+            int dest = AsmStack::get_value(size);
+            if(ifInt(source)){
+                int src = std::stoi(source);
+                dest -= src;
+                AsmStack::push(src,size);
+            }
+            if(ifRegister(source)){
+                int src = findRegister(source)->get_value();
+                int size2 = findRegister(source)->get_size();
+                dest -= src;
+                AsmStack::push(dest, size2);
+            }
+            if(ifMemory(source)){
+                int size2 = extractSize(source);
+                int src = AsmStack::get_value(size2);
+                dest -= src;
+                AsmStack::push(dest, size2);
+            }
+        }
+        if (ifRegister(destination)){
+            int dest = findRegister(destination)->get_value();
+            if(ifInt(source)){
+                int src = toInt(source);
+                dest -= src;
+                findRegister(destination)->set_value(dest);
+            }
+            if(ifRegister(source)){
+                int src = findRegister(source)->get_value();
+                dest -= src;
+                findRegister(destination)->set_value(dest);
+            }
+            if(ifMemory(source)){
+                int size = extractSize(source);
+                int src = AsmStack::get_value(size);
+                dest -= src;
+                findRegister(destination)->set_value(dest);
+            }
+            }
 };
 
 #endif // __ASMX__Sub__

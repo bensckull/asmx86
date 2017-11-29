@@ -31,7 +31,6 @@
 
 #include <string>
 
-
 /* --------------------------------------------------------------------------
  *  Class
  * -------------------------------------------------------------------------- */
@@ -43,15 +42,15 @@ class AsmRegister
 
         int __value;
 
-	    int __size;
+        int __size;
 
     public:
         /*! Constructor
          *
          *  \param label the Register label
          */
-        AsmRegister(const std::string& label,int value, int size): 
-		__label(label),__value(value), __size(size){}
+        AsmRegister(const std::string& label,int value, int size):
+        __label(label),__value(value), __size(size){}
 
 
         /*! Set register
@@ -74,7 +73,7 @@ class AsmRegister
 
         /*! Set the register value
          *
-         *  \param value 
+         *  \param value
          */
         void set_value(int value)
         {
@@ -89,9 +88,9 @@ class AsmRegister
         {
             return __value;
         }
-	    /*! Set the size (2 for AX BX.., 4 for EAX EBX...,8 for RAX RBX...) value
+        /*! Set the size (2 for AX BX.., 4 for EAX EBX...,8 for RAX RBX...) value
          *
-         *  \ value 
+         *  \ value
          */
         void set_size(int size)
         {
@@ -109,27 +108,27 @@ class AsmRegister
 
 };
 
-class AsmRegisterCollection 
+class AsmRegisterCollection
 {
     private:
-        
+
         std::vector<AsmRegister*> __registers;
 
     public:
-    
+
         /*! Constructor */
         AsmRegisterCollection(){}
-        
+
         /*! Constructor
          *
          *  \param reg the registers vector
          */
         AsmRegisterCollection(std::vector<AsmRegister*> reg):__registers(reg){}
-        
+
         /*! Get the collection
          *
          *  \return registers vector
-         */    
+         */
         std::vector<AsmRegister*>  get_registers()
         {
             return __registers;
@@ -148,7 +147,7 @@ class AsmRegisterCollection
            }
            return NULL ;
         }
-     
+
         /* Initialize registers */
         void init_registers()
         {
@@ -161,7 +160,7 @@ class AsmRegisterCollection
             __registers.push_back(new AsmRegister("edi",0,4));
             __registers.push_back(new AsmRegister("ebp",0,4));
             __registers.push_back(new AsmRegister("esp",0,4));
-            
+
             __registers.push_back(new AsmRegister("ax",0,2));
             __registers.push_back(new AsmRegister("bx",0,2));
             __registers.push_back(new AsmRegister("cx",0,2));
@@ -171,18 +170,18 @@ class AsmRegisterCollection
             __registers.push_back(new AsmRegister("di",0,2));
             __registers.push_back(new AsmRegister("bp",0,2));
             __registers.push_back(new AsmRegister("sp",0,2));
-            
+
             // Les indicateurs FLAGS register
-             
+
              __registers.push_back(new AsmRegister("CF",0,2));
              __registers.push_back(new AsmRegister("ZF",0,2));
              __registers.push_back(new AsmRegister("PF",0,2));
              __registers.push_back(new AsmRegister("OF",0,2));
              __registers.push_back(new AsmRegister("SF",0,2));
-          
-                     
+
+
         }
-    
+
 };
 
 #endif // __ASMX__REGISTER__

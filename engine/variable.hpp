@@ -29,6 +29,7 @@
  * -------------------------------------------------------------------------- */
 
 #include <string>
+
 using namespace std;
 
 /* --------------------------------------------------------------------------
@@ -39,48 +40,46 @@ using namespace std;
 class AsmVariable
 {
     private:
-        
         int __id;
         string __name;
         string __value;
-	    int __size;
+        int __size;
 
 
     public:
-  
         /*! Constructor
          *
-         *  \param id to identify the variable in the stack " [ebp-size]=id " 
+         *  \param id to identify the variable in the stack " [ebp-size]=id "
          *  \param name variable name
-         *  \param value variable value    
-         *  \param size db=2 dd=4 dw=8  
+         *  \param value variable value
+         *  \param size db=2 dd=4 dw=8
          *
          */
         AsmVariable(int id,const std::string& name,
-                    const std::string& value,int size): 
-                    
-		    __id(id),__name(name),
-		    __value(value),__size(size){}
-		    
-		    
-		/*! Get the variable name
+                    const std::string& value,int size):
+
+            __id(id),__name(name),
+            __value(value),__size(size){}
+
+
+        /*! Get the variable name
          *
          *  \return a string name
-         */           
+         */
         string get_name()
         {
             return __name;
         }
-        
+
        /*! Set the variabler name
         *
         *  \param name
-        */     
+        */
         void set_name(string name)
         {
             __name=name;
         }
-    
+
         /*! Get the variable value
          *
          *  \return a string value
@@ -89,7 +88,7 @@ class AsmVariable
         {
             return __value;
         }
-        
+
         /*! Set the variable value
          *
          *  \param value
@@ -98,7 +97,7 @@ class AsmVariable
         {
             __value = value;
         }
-   
+
         /*! Get the variable size
          *
          *  \return a int
@@ -107,7 +106,7 @@ class AsmVariable
         {
             return __size;
         }
-        
+
         /*! Set the variable size
          *
          *  \param size
@@ -116,46 +115,46 @@ class AsmVariable
         {
             __size=size;
         }
-        
+
         /*! Get the variable id
          *
          *  \return int
          */
-        
-        int get_id() 
+
+        int get_id()
         {
             return __id;
         }
-        
+
         /*! Set the variable id
          *
          *  \param id
          */
-        void set_id(int id) 
+        void set_id(int id)
         {
             __id=id;
         }
 
 };
 
-class AsmVariableCollection 
+class AsmVariableCollection
 {
     private:
-        
+
         vector<AsmVariable*> __variables;
 
     public:
-    
+
         /*! Constructor */
         AsmVariableCollection(){}
-        
+
         /*! Constructor
          *
          *  \param var the variables vector
          */
         AsmVariableCollection(vector<AsmVariable*> var)
                               :__variables(var){}
-                              
+
         /*! Get the collection
          *
          *  \return variables vector
@@ -164,7 +163,7 @@ class AsmVariableCollection
         {
             return __variables;
         }
-        
+
         /*! Get a new variables
          *
          *  \param variable new variables
@@ -173,13 +172,13 @@ class AsmVariableCollection
         {
             __variables.push_back(variable);
         }
-        
+
         /*! check if the string is a name of variable ?
          *
          *  \param nameVariable
          *  \return variable if yes else return null
          */
-        
+
         AsmVariable* findVariable(string  nameVariable)
         {
            for (auto var:__variables)
@@ -188,13 +187,13 @@ class AsmVariableCollection
            }
            return NULL ;
         }
-        
+
         /*! Search a variable by id ?
          *
          *  \param id id variable
          *  \return variable if yes else return null
          */
-        
+
         AsmVariable* findVariableById(int id)
         {
            for (auto var:__variables)
@@ -203,8 +202,8 @@ class AsmVariableCollection
            }
            return NULL ;
         }
-    
-    
+
+
 };
 
 #endif // __ASMX__VARIABLE__

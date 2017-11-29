@@ -32,7 +32,14 @@ endif
 WARNING?=yes
 
 ifeq ($(WARNING),yes)
-CPPFLAGS += -Wall -Werror
+CPPFLAGS += -Wall
+endif
+
+# Set error flags
+ERROR?=yes
+
+ifeq ($(ERROR),yes)
+CPPFLAGS += -Werror
 endif
 
 #  -----------------------------------------------------------------------------

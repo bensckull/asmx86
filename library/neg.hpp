@@ -28,24 +28,26 @@
  *  Modules
  * -------------------------------------------------------------------------- */
 
-#include "engine/register.hpp"
 #include "parser/utils.hpp"
+
 #include "engine/stack.hpp"
+#include "engine/register.hpp"
 #include "engine/variable.hpp"
+
 /* --------------------------------------------------------------------------
  *  Class
- * -------------------------------------------------------------------------- */                  
+ * -------------------------------------------------------------------------- */
 
 class AsmNeg:public AsmRegisterCollection,AsmVariableCollection , AsmStack
 {
-  
+
 
     public:
         /*! Constructor
          *
          *  \param name the function name
          */
-	 AsmNeg(vector<AsmRegister*> reg,vector<AsmVariable*> var):
+     AsmNeg(vector<AsmRegister*> reg,vector<AsmVariable*> var):
         AsmRegisterCollection(reg),AsmVariableCollection(var),AsmStack()
         {}
         /*! function neg
@@ -55,12 +57,12 @@ class AsmNeg:public AsmRegisterCollection,AsmVariableCollection , AsmStack
          *  \destination = - destination
          */
         void neg(std::string destination)
-        {						
-		 if(ifRegister(destination)){
-			int dest = findRegister(destination)->get_value();
-			dest = - dest;
-			findRegister(destination)->set_value(dest);					
-	
+        {
+         if(ifRegister(destination)){
+            int dest = findRegister(destination)->get_value();
+            dest = - dest;
+            findRegister(destination)->set_value(dest);
+
         }
 
 
