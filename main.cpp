@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 
     try
     {
-        AsmEngine* engine = new AsmEngine("examples/test.asm");
+        new AsmEngine("test.asm");
     }
     catch(exception& error) {
         cerr << " !! " << error.what() << endl;

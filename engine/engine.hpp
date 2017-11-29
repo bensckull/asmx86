@@ -130,7 +130,7 @@ class AsmEngine: public AsmParser
 
             cout << " -> Found " << instructions.size() << " instructions" << endl;
 
-            int index = position;
+            size_t index = position;
 
             while(main_loop) {
                 // Instruction name
@@ -306,7 +306,7 @@ class AsmEngine: public AsmParser
          *
          *  \param index the index of the first instruction
          */
-        void jump(int index)
+        void jump(size_t index)
         {
             vector<AsmInstruction*> instructions = __main_section->get_instructions();
 
