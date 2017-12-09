@@ -42,6 +42,7 @@ class AsmExtern: public AsmVariableCollection,AsmStack
 
     private:
         AsmStack * __stack;
+        vector<string> __extern;
         int index=1;
 
     public:
@@ -52,7 +53,10 @@ class AsmExtern: public AsmVariableCollection,AsmStack
          *
          */
         AsmExtern(vector<AsmVariable*> var,AsmStack * stack):
-        AsmVariableCollection(var),__stack(stack) {}
+        AsmVariableCollection(var),__stack(stack) 
+        {
+              __extern.push_back("printf");
+        }
 
 
          /* Printf function
@@ -63,6 +67,7 @@ class AsmExtern: public AsmVariableCollection,AsmStack
          */
         string printf()
         {
+           
            string message = findVariableById(__stack->top(index))->get_value();
 
             while (message.find("%") != string::npos)
@@ -70,6 +75,25 @@ class AsmExtern: public AsmVariableCollection,AsmStack
 
             return message;
         }
+        
+        
+        /* Find extern function
+         *
+         *  \para name name function
+         *  \return bool value
+         *
+         */
+        bool findFunction(string name)
+        {
+          for (auto e:__extern)
+           {
+            if (e == name) return true;
+           }
+           return false ;
+        }
+        
+        
+        
 };
 #endif
 
