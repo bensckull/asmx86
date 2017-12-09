@@ -36,6 +36,8 @@
 #include "library/cmp.hpp"
 #include "library/push.hpp"
 #include "library/extern.hpp"
+#include "library/add.hpp"
+#include "library/sub.hpp"
 
 using namespace std;
 
@@ -51,7 +53,7 @@ class AsmEngine: public AsmParser
         AsmSection* __data_section;
         AsmSection* __main_section;
 
-        bool stop = false;
+        bool end_loop=false;
 
         /*! Create a new variable
          *
@@ -115,10 +117,10 @@ class AsmEngine: public AsmParser
          *  \note this function call the defined functions from library (mov,mul,jmp,..)
          *
          */
-
-        void start(int position)
+        
+        void start(unsigned int position)
         {
-            bool main_loop = true;
+       
 
             cout << "--> Start instructions from position " << position << endl;
 
@@ -129,14 +131,17 @@ class AsmEngine: public AsmParser
             vector<AsmInstruction*> instructions = __main_section->get_instructions();
 
             cout << " -> Found " << instructions.size() << " instructions" << endl;
+         
 
-            size_t index = position;
-
-            while(main_loop) {
+            unsigned int index = position;
+   
+            while(!end_loop) {
                 // Instruction name
+
                 string name = instructions[index]->get_name();
                 // Instruction parameters
                 vector<string> parameters = instructions[index]->get_parameters();
+                    
 
                 cout << " -> Instruction " << name << endl;
 
@@ -150,11 +155,13 @@ class AsmEngine: public AsmParser
                     {
                         cout << "    :: Jump to ";
                         cout << parameters[0] << endl;
-
+                        
                         AsmJmp* jmp = new AsmJmp(
                             __registers->get_registers()
                         );
-
+                        
+            
+                      
                         if(name == "jmp" and jmp->jmp())
                             jump(index);
 
@@ -209,8 +216,8 @@ class AsmEngine: public AsmParser
                     if(parameters.size() == 2)
                     {
                         cout << "    :: Move ";
-                        cout << parameters[0] << " to ";
-                        cout << parameters[1] << endl;
+                        cout << parameters[1] << " to ";
+                        cout << parameters[0] << endl;
 
                         AsmMov* mov = new AsmMov(
                             __registers->get_registers(),
@@ -221,6 +228,58 @@ class AsmEngine: public AsmParser
                         mov->mov(parameters[0], parameters[1]);
                     }
 
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+                
+                /* ---------------------------------------
+                 *  ADD instructions
+                 * --------------------------------------- */
+                  
+                else if(name == "add")
+                {
+                         
+                   if(parameters.size() == 2)
+                   {
+                        cout << "    :: Add ";
+                        cout << parameters[1] << " to ";
+                        cout << parameters[0] << endl;
+ 
+                        AsmAdd* add = new AsmAdd(
+                            __registers->get_registers(),
+                            __variables->get_variables(),
+                            __stack
+                        );
+
+                        add->add(parameters[0], parameters[1]);
+                    }
+                        
+                    else
+                        cerr << "  ! Cannot parse instruction" << endl;
+                }
+                
+                 /* ---------------------------------------
+                 *  SUB instructions
+                 * --------------------------------------- */
+                  
+                else if(name == "sub")
+                {
+                         
+                   if(parameters.size() == 2)
+                   {
+                        cout << "    :: Substract ";
+                        cout << parameters[1] << " from ";
+                        cout << parameters[0] << endl;
+ 
+                        AsmSub* sub = new AsmSub(
+                            __registers->get_registers(),
+                            __variables->get_variables(),
+                            __stack
+                        );
+
+                        sub->sub(parameters[0], parameters[1]);
+                    }
+                        
                     else
                         cerr << "  ! Cannot parse instruction" << endl;
                 }
@@ -250,7 +309,7 @@ class AsmEngine: public AsmParser
                 }
 
                 /* ---------------------------------------
-                 *  CALL instructions
+                 *  CALL Functions
                  * --------------------------------------- */
 
                 else if(name == "call")
@@ -270,35 +329,42 @@ class AsmEngine: public AsmParser
                             start(label->get_position());
                         }
 
-                        /*
+                       
                         // This is a function
                         else
                         {
+                        
+                            /* ---------------------------------------
+                             *  Printf function
+                             * --------------------------------------- */
+                 
                             AsmExtern* function = new AsmExtern(
                                 __variables->get_variables(),
                                 __stack
                             );
+                            
+                            showStack(parameters[0]);
 
                             if(parameters[0].find("printf") != string::npos)
                             {
                                 cout << "<<< " << function->printf() << endl;
                             }
+                          
+                            
                         }
-                        */
+                        
                     }
-
-                    else
-                        cerr << "  ! Cannot parse instruction" << endl;
-                }
-
+                 }
+                    
+                 
                 /* ---------------------------------------
                  *  Manage while loop
                  * --------------------------------------- */
 
                 ++index;
-
-                if(index >= instructions.size())
-                    main_loop = false;
+                
+                if(index >= instructions.size()) 
+                    end_loop = true;
             }
         }
 
@@ -345,6 +411,39 @@ class AsmEngine: public AsmParser
                     "Instructions structure is empty"
                 );
             }
+        }
+        
+        /*! Show the stack values while calling function
+         *
+         *  \param nameFunction the index of the first instruction
+         *
+         *  \note this function is temporary here , just for showing the running traces
+         *
+         */
+        void showStack(string nameFunction)
+        {
+        
+            map<int,int> ebp,esp ;
+            __stack->FillEsp();
+            ebp = __stack->get_ebp();
+            esp = __stack->get_esp();
+            map<int,int>::iterator j=esp.begin();
+            
+            cout << endl;
+            cout << "  > Stack values while calling  "<< nameFunction << " function : " << endl << endl;
+        
+            for(map<int,int>::iterator i=ebp.begin(); i!=ebp.end(); ++i) 
+            {
+                
+                cout << "   [ebp+" << i->first<< "]" << "    " <<i->second;
+                cout << "    [esp" << j->first << "]"<< endl;
+         
+                ++j;
+                
+             }
+             cout << endl;
+          
+        
         }
 
     public:
@@ -401,6 +500,8 @@ class AsmEngine: public AsmParser
 
             else
                 cerr << "  ! No main label has been founded in this program" << endl;
+
+
         }
 };
 
