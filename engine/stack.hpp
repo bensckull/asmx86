@@ -136,15 +136,15 @@ class AsmStack
         }
 
         /*! Get esp
-        *
-        *  \return a map
-        */
+         *
+         *  \return a map
+         */
         map<int,int> get_esp()
         {
             return __esp;
         }
 
-         /*! Return the indexed value by a reverse index in the stack
+        /*! Return the indexed value by a reverse index in the stack
          *
          *  \param rindex the reverse index
          *
@@ -155,6 +155,27 @@ class AsmStack
            map<int,int>::iterator it = __ebp.end();
            int value = (prev(it, rindex))->second ;
            return value;
+        }
+        
+        /*! Remove the the first "size" bits of the stack
+         *
+         *  \param size 
+         *
+         */
+        void remove(int size)
+        {
+        
+           map<int,int>::iterator it=prev(__ebp.end());          
+           
+           while(size > 0 && it != __ebp.begin() )
+           {
+             __ebp.erase(it);
+             
+             // it->first - next(it)->first = size of value to remove 
+             size = size - ( it->first - next(it)->first  ); 
+             it--;
+             
+           }
         }
 
 };
