@@ -77,6 +77,10 @@ class AsmRegister
          */
         void set_value(int value)
         {
+        
+           if(__label != "ebp" && __label != "esp")
+             std::cout << "       +"<<__label << " = " << value << std::endl;
+             
             __value = value;
         }
 
