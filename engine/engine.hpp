@@ -30,12 +30,12 @@
 #include "engine/register.hpp"
 #include "engine/variable.hpp"
 #include "engine/stack.hpp"
+#include "engine/errors.hpp"
 
 #include "library/jmp.hpp"
 #include "library/mov.hpp"
 #include "library/cmp.hpp"
 #include "library/push.hpp"
-#include "library/extern.hpp"
 #include "library/add.hpp"
 #include "library/sub.hpp"
 
@@ -49,11 +49,14 @@ class AsmEngine: public AsmParser
         AsmRegisterCollection* __registers;
 
         AsmStack* __stack;
+        
+        AsmErrors* __errors;
 
         AsmSection* __data_section;
         AsmSection* __main_section;
 
         bool end_loop=false;
+       
 
         /*! Create a new variable
          *
@@ -105,6 +108,8 @@ class AsmEngine: public AsmParser
             __registers = new AsmRegisterCollection();
             // Stack structure
             __stack = new AsmStack();
+            
+          
 
             // Program main section reference
             __main_section = nullptr;
@@ -141,7 +146,24 @@ class AsmEngine: public AsmParser
                 string name = instructions[index]->get_name();
                 // Instruction parameters
                 vector<string> parameters = instructions[index]->get_parameters();
-                    
+                
+              /* ---------------------------------------
+               *  Manage errors
+               * --------------------------------------- */
+               
+              __errors = new AsmErrors(
+                            __registers->get_registers(),
+                            __variables->get_variables(),
+                            __stack
+                            );
+                
+                if ( !__errors->check_parameters(parameters,__main_section) )
+                {
+                    cout << "<<< error detected in " << name;
+                    cout << " instruction  : " << index+1 <<" !!" <<endl;
+                    break;
+                
+                }
 
                 cout << " -> Instruction " << name << endl;
 
@@ -442,9 +464,8 @@ class AsmEngine: public AsmParser
                 
              }
              cout << endl;
-          
-        
         }
+
 
     public:
         /*! Constructor
