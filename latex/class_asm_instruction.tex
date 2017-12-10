@@ -1,0 +1,108 @@
+\hypertarget{class_asm_instruction}{}\section{Asm\+Instruction Class Reference}
+\label{class_asm_instruction}\index{Asm\+Instruction@{Asm\+Instruction}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_instruction_a1bd7ae8a45e9454e208ccabf6cd338ee}{Asm\+Instruction} (const std\+::string \&name)
+\item 
+void \hyperlink{class_asm_instruction_a40ecdde6cf89febc8871ad9e48c15aa9}{set\+\_\+name} (const std\+::string \&name)
+\item 
+std\+::string \hyperlink{class_asm_instruction_a444b12f04ac09dd439ee4db10eefb280}{get\+\_\+name} ()
+\item 
+void \hyperlink{class_asm_instruction_afec9a31e02177764eeff001fcec4013b}{add\+\_\+parameter} (const std\+::string \&parameter)
+\item 
+void \hyperlink{class_asm_instruction_ad89f5c0d5d2f4032d45c6c4ddebcc857}{remove\+\_\+parameter} (const std\+::string \&parameter)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{class_asm_instruction_ae8b76422c5567e72846e5f3636f52d5d}{get\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Instruction@{Asm\+Instruction}!Asm\+Instruction@{Asm\+Instruction}}
+\index{Asm\+Instruction@{Asm\+Instruction}!Asm\+Instruction@{Asm\+Instruction}}
+\subsubsection[{\texorpdfstring{Asm\+Instruction(const std\+::string \&name)}{AsmInstruction(const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Instruction\+::\+Asm\+Instruction (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_instruction_a1bd7ae8a45e9454e208ccabf6cd338ee}{}\label{class_asm_instruction_a1bd7ae8a45e9454e208ccabf6cd338ee}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the instruction label \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Instruction@{Asm\+Instruction}!add\+\_\+parameter@{add\+\_\+parameter}}
+\index{add\+\_\+parameter@{add\+\_\+parameter}!Asm\+Instruction@{Asm\+Instruction}}
+\subsubsection[{\texorpdfstring{add\+\_\+parameter(const std\+::string \&parameter)}{add_parameter(const std::string &parameter)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Instruction\+::add\+\_\+parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{parameter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_instruction_afec9a31e02177764eeff001fcec4013b}{}\label{class_asm_instruction_afec9a31e02177764eeff001fcec4013b}
+Add a new parameter to instruction
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & the new parameter to add \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Instruction@{Asm\+Instruction}!get\+\_\+name@{get\+\_\+name}}
+\index{get\+\_\+name@{get\+\_\+name}!Asm\+Instruction@{Asm\+Instruction}}
+\subsubsection[{\texorpdfstring{get\+\_\+name()}{get_name()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Asm\+Instruction\+::get\+\_\+name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_instruction_a444b12f04ac09dd439ee4db10eefb280}{}\label{class_asm_instruction_a444b12f04ac09dd439ee4db10eefb280}
+Get the instruction name
+
+\begin{DoxyReturn}{Returns}
+a string name 
+\end{DoxyReturn}
+\index{Asm\+Instruction@{Asm\+Instruction}!get\+\_\+parameters@{get\+\_\+parameters}}
+\index{get\+\_\+parameters@{get\+\_\+parameters}!Asm\+Instruction@{Asm\+Instruction}}
+\subsubsection[{\texorpdfstring{get\+\_\+parameters()}{get_parameters()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ Asm\+Instruction\+::get\+\_\+parameters (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_instruction_ae8b76422c5567e72846e5f3636f52d5d}{}\label{class_asm_instruction_ae8b76422c5567e72846e5f3636f52d5d}
+Get the instruction parameters
+
+\begin{DoxyReturn}{Returns}
+a vector of string 
+\end{DoxyReturn}
+\index{Asm\+Instruction@{Asm\+Instruction}!remove\+\_\+parameter@{remove\+\_\+parameter}}
+\index{remove\+\_\+parameter@{remove\+\_\+parameter}!Asm\+Instruction@{Asm\+Instruction}}
+\subsubsection[{\texorpdfstring{remove\+\_\+parameter(const std\+::string \&parameter)}{remove_parameter(const std::string &parameter)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Instruction\+::remove\+\_\+parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{parameter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_instruction_ad89f5c0d5d2f4032d45c6c4ddebcc857}{}\label{class_asm_instruction_ad89f5c0d5d2f4032d45c6c4ddebcc857}
+Remove a specific parameter
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & the parameter to remove from parameters \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Instruction@{Asm\+Instruction}!set\+\_\+name@{set\+\_\+name}}
+\index{set\+\_\+name@{set\+\_\+name}!Asm\+Instruction@{Asm\+Instruction}}
+\subsubsection[{\texorpdfstring{set\+\_\+name(const std\+::string \&name)}{set_name(const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Instruction\+::set\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_instruction_a40ecdde6cf89febc8871ad9e48c15aa9}{}\label{class_asm_instruction_a40ecdde6cf89febc8871ad9e48c15aa9}
+Set instruction label
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the instruction label string \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+parser/\hyperlink{instruction_8hpp}{instruction.\+hpp}\end{DoxyCompactItemize}

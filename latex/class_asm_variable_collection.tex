@@ -1,0 +1,113 @@
+\hypertarget{class_asm_variable_collection}{}\section{Asm\+Variable\+Collection Class Reference}
+\label{class_asm_variable_collection}\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+
+
+Inheritance diagram for Asm\+Variable\+Collection\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_variable_collection_a7cf2eff68a8d5e64dbbf916edf00bb7f}{Asm\+Variable\+Collection} ()
+\item 
+\hyperlink{class_asm_variable_collection_ae774f2696fd406a7da158191d05c968c}{Asm\+Variable\+Collection} (vector$<$ \hyperlink{class_asm_variable}{Asm\+Variable} $\ast$ $>$ var)
+\item 
+vector$<$ \hyperlink{class_asm_variable}{Asm\+Variable} $\ast$ $>$ \hyperlink{class_asm_variable_collection_aef531794c7134ef0e776b6d6041cb595}{get\+\_\+variables} ()
+\item 
+void \hyperlink{class_asm_variable_collection_aba63e3f25ffb44f6b116bbc80610f770}{add\+\_\+variable} (\hyperlink{class_asm_variable}{Asm\+Variable} $\ast$variable)
+\item 
+\hyperlink{class_asm_variable}{Asm\+Variable} $\ast$ \hyperlink{class_asm_variable_collection_a03351a06f7d6c80dc99d63bb0549955d}{find\+Variable} (string name\+Variable)
+\item 
+\hyperlink{class_asm_variable}{Asm\+Variable} $\ast$ \hyperlink{class_asm_variable_collection_a9e9f72e1b60e7b55e3ad1752aff5ced1}{find\+Variable\+By\+Id} (int id)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\subsubsection[{\texorpdfstring{Asm\+Variable\+Collection()}{AsmVariableCollection()}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Variable\+Collection\+::\+Asm\+Variable\+Collection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_collection_a7cf2eff68a8d5e64dbbf916edf00bb7f}{}\label{class_asm_variable_collection_a7cf2eff68a8d5e64dbbf916edf00bb7f}
+Constructor \index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\subsubsection[{\texorpdfstring{Asm\+Variable\+Collection(vector$<$ Asm\+Variable $\ast$ $>$ var)}{AsmVariableCollection(vector< AsmVariable * > var)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Variable\+Collection\+::\+Asm\+Variable\+Collection (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Asm\+Variable} $\ast$ $>$}]{var}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_collection_ae774f2696fd406a7da158191d05c968c}{}\label{class_asm_variable_collection_ae774f2696fd406a7da158191d05c968c}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em var} & the variables vector \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!add\+\_\+variable@{add\+\_\+variable}}
+\index{add\+\_\+variable@{add\+\_\+variable}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\subsubsection[{\texorpdfstring{add\+\_\+variable(\+Asm\+Variable $\ast$variable)}{add_variable(AsmVariable *variable)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Variable\+Collection\+::add\+\_\+variable (
+\begin{DoxyParamCaption}
+\item[{{\bf Asm\+Variable} $\ast$}]{variable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_collection_aba63e3f25ffb44f6b116bbc80610f770}{}\label{class_asm_variable_collection_aba63e3f25ffb44f6b116bbc80610f770}
+Get a new variables
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable} & new variables \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!find\+Variable@{find\+Variable}}
+\index{find\+Variable@{find\+Variable}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\subsubsection[{\texorpdfstring{find\+Variable(string name\+Variable)}{findVariable(string nameVariable)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asm\+Variable}$\ast$ Asm\+Variable\+Collection\+::find\+Variable (
+\begin{DoxyParamCaption}
+\item[{string}]{name\+Variable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_collection_a03351a06f7d6c80dc99d63bb0549955d}{}\label{class_asm_variable_collection_a03351a06f7d6c80dc99d63bb0549955d}
+check if the string is a name of variable ?
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+Variable} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+variable if yes else return null 
+\end{DoxyReturn}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!find\+Variable\+By\+Id@{find\+Variable\+By\+Id}}
+\index{find\+Variable\+By\+Id@{find\+Variable\+By\+Id}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\subsubsection[{\texorpdfstring{find\+Variable\+By\+Id(int id)}{findVariableById(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asm\+Variable}$\ast$ Asm\+Variable\+Collection\+::find\+Variable\+By\+Id (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_collection_a9e9f72e1b60e7b55e3ad1752aff5ced1}{}\label{class_asm_variable_collection_a9e9f72e1b60e7b55e3ad1752aff5ced1}
+Search a variable by id ?
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & id variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+variable if yes else return null 
+\end{DoxyReturn}
+\index{Asm\+Variable\+Collection@{Asm\+Variable\+Collection}!get\+\_\+variables@{get\+\_\+variables}}
+\index{get\+\_\+variables@{get\+\_\+variables}!Asm\+Variable\+Collection@{Asm\+Variable\+Collection}}
+\subsubsection[{\texorpdfstring{get\+\_\+variables()}{get_variables()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Asm\+Variable}$\ast$$>$ Asm\+Variable\+Collection\+::get\+\_\+variables (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_collection_aef531794c7134ef0e776b6d6041cb595}{}\label{class_asm_variable_collection_aef531794c7134ef0e776b6d6041cb595}
+Get the collection
+
+\begin{DoxyReturn}{Returns}
+variables vector 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/\hyperlink{variable_8hpp}{variable.\+hpp}\end{DoxyCompactItemize}

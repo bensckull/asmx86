@@ -1,0 +1,271 @@
+\hypertarget{utils_8hpp}{}\section{parser/utils.hpp File Reference}
+\label{utils_8hpp}\index{parser/utils.\+hpp@{parser/utils.\+hpp}}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+Include dependency graph for utils.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{utils_8hpp_a8576cbf87d6c3dda7a52ca4a56c5f2dc}{trim} (const std\+::string \&str, const std\+::string \&whitespace=\char`\"{} \textbackslash{}t\char`\"{})
+\item 
+std\+::string \hyperlink{utils_8hpp_a79139c15f923ae07fdd12fce81385ae5}{reduce} (const std\+::string \&str, const std\+::string \&fill=\char`\"{} \char`\"{}, const std\+::string \&whitespace=\char`\"{} \textbackslash{}t\char`\"{})
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{utils_8hpp_ac775a2d619b80602dddc4a41921916ef}{split} (const std\+::string \&str, const std\+::string \&\hyperlink{file_8hpp_ad41c3c3c94312099c3f91a539621391e}{separator}=\char`\"{} \char`\"{})
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{utils_8hpp_a4ebee8a4031d0ce01274c55dd60dc457}{asm\+\_\+join\+\_\+message} (std\+::vector$<$ std\+::string $>$ \&data)
+\item 
+bool \hyperlink{utils_8hpp_ab15fd448e634af308c7dc00a17cc8363}{if\+Memory} (std\+::string str)
+\item 
+bool \hyperlink{utils_8hpp_a10bf0be2fd3ce17669d1651e5784565d}{if\+Int} (std\+::string str)
+\item 
+int \hyperlink{utils_8hpp_ab25e41fb820f2014a6d003ff0dab193a}{to\+Int} (std\+::string str)
+\item 
+bool \hyperlink{utils_8hpp_a3fbf997f48bc0c9269f61e20f2570e30}{if\+Register} (std\+::string str)
+\item 
+int \hyperlink{utils_8hpp_a11a9bcb1146f4d09991e65fe2535625a}{extract\+Size} (std\+::string str)
+\item 
+std\+::string \hyperlink{utils_8hpp_ac217fe29808442fad226c33b371a1733}{extract\+Variable} (std\+::string str)
+\item 
+bool \hyperlink{utils_8hpp_af79b4ad4737d81bdfdc18c1d2d15b19b}{if\+Stack} (std\+::string str)
+\item 
+bool \hyperlink{utils_8hpp_a9becdc2d6a564e1fb5c8ce5d25dd2324}{if\+Variabe} (std\+::string str)
+\item 
+int \hyperlink{utils_8hpp_a5ff615a2fd4c068e4229ab33aca50712}{to\+Int32} (bool boolean)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{utils.\+hpp@{utils.\+hpp}!asm\+\_\+join\+\_\+message@{asm\+\_\+join\+\_\+message}}
+\index{asm\+\_\+join\+\_\+message@{asm\+\_\+join\+\_\+message}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{asm\+\_\+join\+\_\+message(std\+::vector$<$ std\+::string $>$ \&data)}{asm_join_message(std::vector< std::string > &data)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ asm\+\_\+join\+\_\+message (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ std\+::string $>$ \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a4ebee8a4031d0ce01274c55dd60dc457}{}\label{utils_8hpp_a4ebee8a4031d0ce01274c55dd60dc457}
+Join strings between quotation from a vector of string
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a vector of parameters\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of string 
+\end{DoxyReturn}
+The quotation is place at the end \index{utils.\+hpp@{utils.\+hpp}!extract\+Size@{extract\+Size}}
+\index{extract\+Size@{extract\+Size}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{extract\+Size(std\+::string str)}{extractSize(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}int extract\+Size (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a11a9bcb1146f4d09991e65fe2535625a}{}\label{utils_8hpp_a11a9bcb1146f4d09991e65fe2535625a}
+Extract the register size example \+:\mbox{[}ebp+4\mbox{]} 4 is the size
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data int 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!extract\+Variable@{extract\+Variable}}
+\index{extract\+Variable@{extract\+Variable}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{extract\+Variable(std\+::string str)}{extractVariable(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string extract\+Variable (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_ac217fe29808442fad226c33b371a1733}{}\label{utils_8hpp_ac217fe29808442fad226c33b371a1733}
+Extract the variable example \mbox{[}var\mbox{]} return \char`\"{}var\char`\"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data a string 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!if\+Int@{if\+Int}}
+\index{if\+Int@{if\+Int}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{if\+Int(std\+::string str)}{ifInt(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}bool if\+Int (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a10bf0be2fd3ce17669d1651e5784565d}{}\label{utils_8hpp_a10bf0be2fd3ce17669d1651e5784565d}
+Verify if it is a integer
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a nomber 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!if\+Memory@{if\+Memory}}
+\index{if\+Memory@{if\+Memory}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{if\+Memory(std\+::string str)}{ifMemory(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}bool if\+Memory (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_ab15fd448e634af308c7dc00a17cc8363}{}\label{utils_8hpp_ab15fd448e634af308c7dc00a17cc8363}
+Verify if it is a memory address
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a memory address 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!if\+Register@{if\+Register}}
+\index{if\+Register@{if\+Register}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{if\+Register(std\+::string str)}{ifRegister(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}bool if\+Register (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a3fbf997f48bc0c9269f61e20f2570e30}{}\label{utils_8hpp_a3fbf997f48bc0c9269f61e20f2570e30}
+\index{utils.\+hpp@{utils.\+hpp}!if\+Stack@{if\+Stack}}
+\index{if\+Stack@{if\+Stack}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{if\+Stack(std\+::string str)}{ifStack(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}bool if\+Stack (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_af79b4ad4737d81bdfdc18c1d2d15b19b}{}\label{utils_8hpp_af79b4ad4737d81bdfdc18c1d2d15b19b}
+Verify if it is a stack address
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is an address 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!if\+Variabe@{if\+Variabe}}
+\index{if\+Variabe@{if\+Variabe}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{if\+Variabe(std\+::string str)}{ifVariabe(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}bool if\+Variabe (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a9becdc2d6a564e1fb5c8ce5d25dd2324}{}\label{utils_8hpp_a9becdc2d6a564e1fb5c8ce5d25dd2324}
+Verify if it is a Variable
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a variable 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!reduce@{reduce}}
+\index{reduce@{reduce}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{reduce(const std\+::string \&str, const std\+::string \&fill="" "", const std\+::string \&whitespace="" \textbackslash{}t"")}{reduce(const std::string &str, const std::string &fill=" ", const std::string &whitespace=" \textbackslash{}t")}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string reduce (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str, }
+\item[{const std\+::string \&}]{fill = {\ttfamily \char`\"{}~\char`\"{}}, }
+\item[{const std\+::string \&}]{whitespace = {\ttfamily \char`\"{}~\textbackslash{}t\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a79139c15f923ae07fdd12fce81385ae5}{}\label{utils_8hpp_a79139c15f923ae07fdd12fce81385ae5}
+Remove trailing spaces and reduce string
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to reduce \\
+\hline
+{\em fill} & the string using to reduce \\
+\hline
+{\em whitespace} & the whitespace declaration\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reduced string
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+\href{https://stackoverflow.com/a/1798170}{\tt https\+://stackoverflow.\+com/a/1798170} 
+\end{DoxyNote}
+\index{utils.\+hpp@{utils.\+hpp}!split@{split}}
+\index{split@{split}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{split(const std\+::string \&str, const std\+::string \&separator="" "")}{split(const std::string &str, const std::string &separator=" ")}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ split (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str, }
+\item[{const std\+::string \&}]{separator = {\ttfamily \char`\"{}~\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_ac775a2d619b80602dddc4a41921916ef}{}\label{utils_8hpp_ac775a2d619b80602dddc4a41921916ef}
+Split a string with a specific separator
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to split \\
+\hline
+{\em separator} & the separator using to split the string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of string 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!to\+Int@{to\+Int}}
+\index{to\+Int@{to\+Int}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{to\+Int(std\+::string str)}{toInt(std::string str)}}]{\setlength{\rightskip}{0pt plus 5cm}int to\+Int (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_ab25e41fb820f2014a6d003ff0dab193a}{}\label{utils_8hpp_ab25e41fb820f2014a6d003ff0dab193a}
+Transform a string into int
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!to\+Int32@{to\+Int32}}
+\index{to\+Int32@{to\+Int32}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{to\+Int32(bool boolean)}{toInt32(bool boolean)}}]{\setlength{\rightskip}{0pt plus 5cm}int to\+Int32 (
+\begin{DoxyParamCaption}
+\item[{bool}]{boolean}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a5ff615a2fd4c068e4229ab33aca50712}{}\label{utils_8hpp_a5ff615a2fd4c068e4229ab33aca50712}
+Transform bool into int 1 if true 0 if false
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & a string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if true 0 else 
+\end{DoxyReturn}
+\index{utils.\+hpp@{utils.\+hpp}!trim@{trim}}
+\index{trim@{trim}!utils.\+hpp@{utils.\+hpp}}
+\subsubsection[{\texorpdfstring{trim(const std\+::string \&str, const std\+::string \&whitespace="" \textbackslash{}t"")}{trim(const std::string &str, const std::string &whitespace=" \textbackslash{}t")}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string trim (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str, }
+\item[{const std\+::string \&}]{whitespace = {\ttfamily \char`\"{}~\textbackslash{}t\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{utils_8hpp_a8576cbf87d6c3dda7a52ca4a56c5f2dc}{}\label{utils_8hpp_a8576cbf87d6c3dda7a52ca4a56c5f2dc}
+Remove trailing spaces
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to reduce \\
+\hline
+{\em whitespace} & the whitespace declaration\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a trimed string
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+\href{https://stackoverflow.com/a/1798170}{\tt https\+://stackoverflow.\+com/a/1798170} 
+\end{DoxyNote}

@@ -1,0 +1,8 @@
+digraph "parser" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_572890c148f68441e050f6560d78312b [shape=box, label="parser", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_572890c148f68441e050f6560d78312b.html"];
+  dir_fb6598a949f0f53f82ac9a1a956124c7 [shape=box label="file" URL="dir_fb6598a949f0f53f82ac9a1a956124c7.html"];
+  dir_572890c148f68441e050f6560d78312b->dir_fb6598a949f0f53f82ac9a1a956124c7 [headlabel="1", labeldistance=1.5 headhref="dir_000003_000001.html"];
+}

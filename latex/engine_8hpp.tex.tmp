@@ -1,0 +1,34 @@
+\hypertarget{engine_8hpp}{}\section{engine/engine.hpp File Reference}
+\label{engine_8hpp}\index{engine/engine.\+hpp@{engine/engine.\+hpp}}
+{\ttfamily \#include \char`\"{}parser/parser.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine/register.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine/variable.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine/stack.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}library/jmp.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}library/mov.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}library/cmp.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}library/push.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}library/extern.\+hpp\char`\"{}}\\*
+Include dependency graph for engine.\+hpp\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_asm_engine}{Asm\+Engine}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Hanan6 \href{mailto:hanan.najim6@gmail.com}{\tt hanan.\+najim6@gmail.\+com} 
+
+Adnan44 \href{mailto:adnane.mounassib@gmail.com}{\tt adnane.\+mounassib@gmail.\+com} 
+
+Yassine\+Ai \href{mailto:yassine.soudane@gmail.com}{\tt yassine.\+soudane@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+december 2017 
+\end{DoxyDate}

@@ -1,0 +1,113 @@
+\hypertarget{class_asm_jmp}{}\section{Asm\+Jmp Class Reference}
+\label{class_asm_jmp}\index{Asm\+Jmp@{Asm\+Jmp}}
+
+
+Inheritance diagram for Asm\+Jmp\+:
+% FIG 0
+
+
+Collaboration diagram for Asm\+Jmp\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_jmp_a2324dae7ee9c2f2f5c1e2454d76f4eda}{Asm\+Jmp} (vector$<$ \hyperlink{class_asm_register}{Asm\+Register} $\ast$ $>$ reg)
+\item 
+bool \hyperlink{class_asm_jmp_a4130cd60375c8128bfe10b9e207841a8}{jmp} ()
+\item 
+bool \hyperlink{class_asm_jmp_a2ae8c358664708003553787441d813d1}{jge} ()
+\item 
+bool \hyperlink{class_asm_jmp_aaf3b9d1d9fa0534311a7323704f7f2f9}{jle} ()
+\item 
+bool \hyperlink{class_asm_jmp_a3dc1db741c96e54bba883f5b7f649a44}{jl} ()
+\item 
+bool \hyperlink{class_asm_jmp_a1c0b608835a2cdd69bc9408e7c24b470}{jg} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Jmp@{Asm\+Jmp}!Asm\+Jmp@{Asm\+Jmp}}
+\index{Asm\+Jmp@{Asm\+Jmp}!Asm\+Jmp@{Asm\+Jmp}}
+\subsubsection[{\texorpdfstring{Asm\+Jmp(vector$<$ Asm\+Register $\ast$ $>$ reg)}{AsmJmp(vector< AsmRegister * > reg)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Jmp\+::\+Asm\+Jmp (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Asm\+Register} $\ast$ $>$}]{reg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_jmp_a2324dae7ee9c2f2f5c1e2454d76f4eda}{}\label{class_asm_jmp_a2324dae7ee9c2f2f5c1e2454d76f4eda}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & the Registers Collection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+get the flags value 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Jmp@{Asm\+Jmp}!jg@{jg}}
+\index{jg@{jg}!Asm\+Jmp@{Asm\+Jmp}}
+\subsubsection[{\texorpdfstring{jg()}{jg()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Asm\+Jmp\+::jg (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_jmp_a1c0b608835a2cdd69bc9408e7c24b470}{}\label{class_asm_jmp_a1c0b608835a2cdd69bc9408e7c24b470}
+jump if greater
+
+\begin{DoxyReturn}{Returns}
+true if value1 greater then value2 
+\end{DoxyReturn}
+\index{Asm\+Jmp@{Asm\+Jmp}!jge@{jge}}
+\index{jge@{jge}!Asm\+Jmp@{Asm\+Jmp}}
+\subsubsection[{\texorpdfstring{jge()}{jge()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Asm\+Jmp\+::jge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_jmp_a2ae8c358664708003553787441d813d1}{}\label{class_asm_jmp_a2ae8c358664708003553787441d813d1}
+jump if greater or equal
+
+\begin{DoxyReturn}{Returns}
+true if value1 greater or equal to value2 
+\end{DoxyReturn}
+\index{Asm\+Jmp@{Asm\+Jmp}!jl@{jl}}
+\index{jl@{jl}!Asm\+Jmp@{Asm\+Jmp}}
+\subsubsection[{\texorpdfstring{jl()}{jl()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Asm\+Jmp\+::jl (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_jmp_a3dc1db741c96e54bba883f5b7f649a44}{}\label{class_asm_jmp_a3dc1db741c96e54bba883f5b7f649a44}
+jump if less
+
+\begin{DoxyReturn}{Returns}
+true if value1 less then value2 
+\end{DoxyReturn}
+\index{Asm\+Jmp@{Asm\+Jmp}!jle@{jle}}
+\index{jle@{jle}!Asm\+Jmp@{Asm\+Jmp}}
+\subsubsection[{\texorpdfstring{jle()}{jle()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Asm\+Jmp\+::jle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_jmp_aaf3b9d1d9fa0534311a7323704f7f2f9}{}\label{class_asm_jmp_aaf3b9d1d9fa0534311a7323704f7f2f9}
+jump if less or equal
+
+\begin{DoxyReturn}{Returns}
+true if value1 less or equal to value 2 
+\end{DoxyReturn}
+\index{Asm\+Jmp@{Asm\+Jmp}!jmp@{jmp}}
+\index{jmp@{jmp}!Asm\+Jmp@{Asm\+Jmp}}
+\subsubsection[{\texorpdfstring{jmp()}{jmp()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Asm\+Jmp\+::jmp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_jmp_a4130cd60375c8128bfe10b9e207841a8}{}\label{class_asm_jmp_a4130cd60375c8128bfe10b9e207841a8}
+jmp function
+
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+library/\hyperlink{jmp_8hpp}{jmp.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,20 @@
+\hypertarget{add_8hpp}{}\section{/home/etudiant/\+Master/\+Projet\+M1/git/asmx86/library/add.hpp File Reference}
+\label{add_8hpp}\index{/home/etudiant/\+Master/\+Projet\+M1/git/asmx86/library/add.\+hpp@{/home/etudiant/\+Master/\+Projet\+M1/git/asmx86/library/add.\+hpp}}
+{\ttfamily \#include \char`\"{}parser/utils.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine/stack.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine/register.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}engine/variable.\+hpp\char`\"{}}\\*
+Include dependency graph for add.\+hpp\+:
+% FIG 0
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Adnan44 \href{mailto:adnane.mounassib@gmail.com}{\tt adnane.\+mounassib@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+october 2017 
+\end{DoxyDate}

@@ -1,0 +1,124 @@
+\hypertarget{class_asm_parser}{}\section{Asm\+Parser Class Reference}
+\label{class_asm_parser}\index{Asm\+Parser@{Asm\+Parser}}
+
+
+Inheritance diagram for Asm\+Parser\+:
+% FIG 0
+
+
+Collaboration diagram for Asm\+Parser\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_parser_ad245f4e8a51f2e09deb5ba91f52333dc}{Asm\+Parser} (const std\+::string \&path)
+\item 
+std\+::string \hyperlink{class_asm_parser_ae994934963b893285f9fb6c0e21b73ef}{get\+\_\+name} ()
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{class_asm_parser_a04e4570957ed595049710d651c6d85cf}{get\+\_\+modules} ()
+\item 
+std\+::vector$<$ \hyperlink{class_asm_macro}{Asm\+Macro} $\ast$ $>$ \hyperlink{class_asm_parser_a055ef1a25145a7213e723cefcd0e4d91}{get\+\_\+macros} ()
+\item 
+\hyperlink{class_asm_macro}{Asm\+Macro} $\ast$ \hyperlink{class_asm_parser_adad88c6db67b2c285551341ae961d94a}{get\+\_\+last\+\_\+macro} ()
+\item 
+std\+::vector$<$ \hyperlink{class_asm_section}{Asm\+Section} $\ast$ $>$ \hyperlink{class_asm_parser_abf9ef1de37e7052ae0b5811b0aac6d44}{get\+\_\+sections} ()
+\item 
+\hyperlink{class_asm_section}{Asm\+Section} $\ast$ \hyperlink{class_asm_parser_a68702c8163886d3d09958a860e847a94}{get\+\_\+last\+\_\+section} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Parser@{Asm\+Parser}!Asm\+Parser@{Asm\+Parser}}
+\index{Asm\+Parser@{Asm\+Parser}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{Asm\+Parser(const std\+::string \&path)}{AsmParser(const std::string &path)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Parser\+::\+Asm\+Parser (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_ad245f4e8a51f2e09deb5ba91f52333dc}{}\label{class_asm_parser_ad245f4e8a51f2e09deb5ba91f52333dc}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & the file path on filesystem \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Parser@{Asm\+Parser}!get\+\_\+last\+\_\+macro@{get\+\_\+last\+\_\+macro}}
+\index{get\+\_\+last\+\_\+macro@{get\+\_\+last\+\_\+macro}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{get\+\_\+last\+\_\+macro()}{get_last_macro()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asm\+Macro}$\ast$ Asm\+Parser\+::get\+\_\+last\+\_\+macro (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_adad88c6db67b2c285551341ae961d94a}{}\label{class_asm_parser_adad88c6db67b2c285551341ae961d94a}
+Get last macro
+
+\begin{DoxyReturn}{Returns}
+an \hyperlink{class_asm_macro}{Asm\+Macro} or nullptr 
+\end{DoxyReturn}
+\index{Asm\+Parser@{Asm\+Parser}!get\+\_\+last\+\_\+section@{get\+\_\+last\+\_\+section}}
+\index{get\+\_\+last\+\_\+section@{get\+\_\+last\+\_\+section}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{get\+\_\+last\+\_\+section()}{get_last_section()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asm\+Section}$\ast$ Asm\+Parser\+::get\+\_\+last\+\_\+section (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_a68702c8163886d3d09958a860e847a94}{}\label{class_asm_parser_a68702c8163886d3d09958a860e847a94}
+Get last section
+
+\begin{DoxyReturn}{Returns}
+an \hyperlink{class_asm_section}{Asm\+Section} or nullptr 
+\end{DoxyReturn}
+\index{Asm\+Parser@{Asm\+Parser}!get\+\_\+macros@{get\+\_\+macros}}
+\index{get\+\_\+macros@{get\+\_\+macros}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{get\+\_\+macros()}{get_macros()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Asm\+Macro}$\ast$$>$ Asm\+Parser\+::get\+\_\+macros (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_a055ef1a25145a7213e723cefcd0e4d91}{}\label{class_asm_parser_a055ef1a25145a7213e723cefcd0e4d91}
+Get program macros
+
+\begin{DoxyReturn}{Returns}
+a vector of \hyperlink{class_asm_macro}{Asm\+Macro} 
+\end{DoxyReturn}
+\index{Asm\+Parser@{Asm\+Parser}!get\+\_\+modules@{get\+\_\+modules}}
+\index{get\+\_\+modules@{get\+\_\+modules}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{get\+\_\+modules()}{get_modules()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ Asm\+Parser\+::get\+\_\+modules (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_a04e4570957ed595049710d651c6d85cf}{}\label{class_asm_parser_a04e4570957ed595049710d651c6d85cf}
+Get program modules
+
+\begin{DoxyReturn}{Returns}
+a vector of modules string 
+\end{DoxyReturn}
+\index{Asm\+Parser@{Asm\+Parser}!get\+\_\+name@{get\+\_\+name}}
+\index{get\+\_\+name@{get\+\_\+name}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{get\+\_\+name()}{get_name()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Asm\+Parser\+::get\+\_\+name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_ae994934963b893285f9fb6c0e21b73ef}{}\label{class_asm_parser_ae994934963b893285f9fb6c0e21b73ef}
+Get program name
+
+\begin{DoxyReturn}{Returns}
+a string 
+\end{DoxyReturn}
+\index{Asm\+Parser@{Asm\+Parser}!get\+\_\+sections@{get\+\_\+sections}}
+\index{get\+\_\+sections@{get\+\_\+sections}!Asm\+Parser@{Asm\+Parser}}
+\subsubsection[{\texorpdfstring{get\+\_\+sections()}{get_sections()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Asm\+Section}$\ast$$>$ Asm\+Parser\+::get\+\_\+sections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_parser_abf9ef1de37e7052ae0b5811b0aac6d44}{}\label{class_asm_parser_abf9ef1de37e7052ae0b5811b0aac6d44}
+Get program sections
+
+\begin{DoxyReturn}{Returns}
+a vector of \hyperlink{class_asm_section}{Asm\+Section} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+parser/\hyperlink{parser_8hpp}{parser.\+hpp}\end{DoxyCompactItemize}

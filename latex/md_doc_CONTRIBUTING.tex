@@ -1,0 +1,61 @@
+Ce guide présentera les différentes règles de normalisation de développement qui seront utilisées dans l\textquotesingle{}optique de la réalisation de ce projet.
+
+L\textquotesingle{}ensemble du code devra être réalisé en anglais (variables, fonctions, etc). La documentation quand à elle pourra être écrite en français.
+
+\subsection*{Nom de classes}
+
+Les classes utiliseront la syntaxe {\bfseries Camel\+Case}, qui implique l\textquotesingle{}utilisation de majuscules et l\textquotesingle{}absence d\textquotesingle{}espaces.
+
+
+\begin{DoxyCode}
+1 class File \{\}
+2 
+3 class ASMParser \{\}
+\end{DoxyCode}
+
+
+\subsection*{Nom de variables}
+
+Les variables utiliseront la syntaxe {\bfseries underscore\+\_\+case}, qui implique l\textquotesingle{}utilisation d\textquotesingle{}underscore et d\textquotesingle{}éviter les casses majuscules.
+
+
+\begin{DoxyCode}
+1 const std::String full\_path;
+2 std::String base\_name;
+\end{DoxyCode}
+
+
+\subsection*{Taille maximale des lignes}
+
+Une ligne de code ne devra pas dépasser les {\bfseries 100 caractères}.
+
+\subsection*{Indentations}
+
+L\textquotesingle{}indentation se fera à l\textquotesingle{}aide de {\bfseries 4 espaces}.
+
+\subsection*{Accolades}
+
+Les classes et fonctions utiliseront {\bfseries un saut de ligne} avant la première accolade afin de permettre une meilleure lisibilité.
+
+Les conditions (if, while, etc) utiliseront {\bfseries un espace} avant la première accolade.
+
+
+\begin{DoxyCode}
+1 class File
+2 \{
+3     public:
+4         file(const std::String path)
+5         \{
+6             if(path.size() == 0) \{
+7                 std::cerr << "Houston, there is a problem" << std::endl;
+8             \}
+9         \}
+10 \}
+\end{DoxyCode}
+
+
+\subsection*{Documentation}
+
+La documentation des classes et fonctions sera réalisée avec l\textquotesingle{}aide de \href{http://www.stack.nl/~dimitri/doxygen}{\tt doxygen}.
+
+Un exemple est disponible \href{http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html}{\tt à cette adresse}. 

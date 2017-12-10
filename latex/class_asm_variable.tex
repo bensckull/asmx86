@@ -1,0 +1,161 @@
+\hypertarget{class_asm_variable}{}\section{Asm\+Variable Class Reference}
+\label{class_asm_variable}\index{Asm\+Variable@{Asm\+Variable}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_variable_af5c77653071bf5fa3cfbf4949267bc10}{Asm\+Variable} (int id, const std\+::string \&name, const std\+::string \&value, int size)
+\item 
+string \hyperlink{class_asm_variable_a9c535d344d572e06f0470b4676fe8e19}{get\+\_\+name} ()
+\item 
+void \hyperlink{class_asm_variable_a4f97e9a414c395818c86833c83c8034e}{set\+\_\+name} (string name)
+\item 
+string \hyperlink{class_asm_variable_a0064d68e6b7f297fb8a53e41a92376cd}{get\+\_\+value} ()
+\item 
+void \hyperlink{class_asm_variable_a358fbcf8391212b5d6fd160997a6ffbf}{set\+\_\+value} (int value)
+\item 
+int \hyperlink{class_asm_variable_a73f65c9cd16d725c17889a155eceebfc}{get\+\_\+size} ()
+\item 
+void \hyperlink{class_asm_variable_a71413e3509f22e29d20e70950f5142e2}{set\+\_\+size} (int size)
+\item 
+int \hyperlink{class_asm_variable_a47cf53e2cc78e50d30356025d988bf23}{get\+\_\+id} ()
+\item 
+void \hyperlink{class_asm_variable_a9dc5b226607a2f42c29acff4eee7cf6b}{set\+\_\+id} (int id)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Variable@{Asm\+Variable}!Asm\+Variable@{Asm\+Variable}}
+\index{Asm\+Variable@{Asm\+Variable}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{Asm\+Variable(int id, const std\+::string \&name, const std\+::string \&value, int size)}{AsmVariable(int id, const std::string &name, const std::string &value, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Variable\+::\+Asm\+Variable (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{const std\+::string \&}]{name, }
+\item[{const std\+::string \&}]{value, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_af5c77653071bf5fa3cfbf4949267bc10}{}\label{class_asm_variable_af5c77653071bf5fa3cfbf4949267bc10}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & to identify the variable in the stack \char`\"{} \mbox{[}ebp-\/size\mbox{]}=id \char`\"{} \\
+\hline
+{\em name} & variable name \\
+\hline
+{\em value} & variable value \\
+\hline
+{\em size} & db=2 dd=4 dw=8 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Variable@{Asm\+Variable}!get\+\_\+id@{get\+\_\+id}}
+\index{get\+\_\+id@{get\+\_\+id}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{get\+\_\+id()}{get_id()}}]{\setlength{\rightskip}{0pt plus 5cm}int Asm\+Variable\+::get\+\_\+id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a47cf53e2cc78e50d30356025d988bf23}{}\label{class_asm_variable_a47cf53e2cc78e50d30356025d988bf23}
+Get the variable id
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{Asm\+Variable@{Asm\+Variable}!get\+\_\+name@{get\+\_\+name}}
+\index{get\+\_\+name@{get\+\_\+name}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{get\+\_\+name()}{get_name()}}]{\setlength{\rightskip}{0pt plus 5cm}string Asm\+Variable\+::get\+\_\+name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a9c535d344d572e06f0470b4676fe8e19}{}\label{class_asm_variable_a9c535d344d572e06f0470b4676fe8e19}
+Get the variable name
+
+\begin{DoxyReturn}{Returns}
+a string name 
+\end{DoxyReturn}
+\index{Asm\+Variable@{Asm\+Variable}!get\+\_\+size@{get\+\_\+size}}
+\index{get\+\_\+size@{get\+\_\+size}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{get\+\_\+size()}{get_size()}}]{\setlength{\rightskip}{0pt plus 5cm}int Asm\+Variable\+::get\+\_\+size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a73f65c9cd16d725c17889a155eceebfc}{}\label{class_asm_variable_a73f65c9cd16d725c17889a155eceebfc}
+Get the variable size
+
+\begin{DoxyReturn}{Returns}
+a int 
+\end{DoxyReturn}
+\index{Asm\+Variable@{Asm\+Variable}!get\+\_\+value@{get\+\_\+value}}
+\index{get\+\_\+value@{get\+\_\+value}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{get\+\_\+value()}{get_value()}}]{\setlength{\rightskip}{0pt plus 5cm}string Asm\+Variable\+::get\+\_\+value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a0064d68e6b7f297fb8a53e41a92376cd}{}\label{class_asm_variable_a0064d68e6b7f297fb8a53e41a92376cd}
+Get the variable value
+
+\begin{DoxyReturn}{Returns}
+a string value 
+\end{DoxyReturn}
+\index{Asm\+Variable@{Asm\+Variable}!set\+\_\+id@{set\+\_\+id}}
+\index{set\+\_\+id@{set\+\_\+id}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{set\+\_\+id(int id)}{set_id(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Variable\+::set\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a9dc5b226607a2f42c29acff4eee7cf6b}{}\label{class_asm_variable_a9dc5b226607a2f42c29acff4eee7cf6b}
+Set the variable id
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Variable@{Asm\+Variable}!set\+\_\+name@{set\+\_\+name}}
+\index{set\+\_\+name@{set\+\_\+name}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{set\+\_\+name(string name)}{set_name(string name)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Variable\+::set\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a4f97e9a414c395818c86833c83c8034e}{}\label{class_asm_variable_a4f97e9a414c395818c86833c83c8034e}
+Set the variabler name
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Variable@{Asm\+Variable}!set\+\_\+size@{set\+\_\+size}}
+\index{set\+\_\+size@{set\+\_\+size}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{set\+\_\+size(int size)}{set_size(int size)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Variable\+::set\+\_\+size (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a71413e3509f22e29d20e70950f5142e2}{}\label{class_asm_variable_a71413e3509f22e29d20e70950f5142e2}
+Set the variable size
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Variable@{Asm\+Variable}!set\+\_\+value@{set\+\_\+value}}
+\index{set\+\_\+value@{set\+\_\+value}!Asm\+Variable@{Asm\+Variable}}
+\subsubsection[{\texorpdfstring{set\+\_\+value(int value)}{set_value(int value)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Variable\+::set\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_variable_a358fbcf8391212b5d6fd160997a6ffbf}{}\label{class_asm_variable_a358fbcf8391212b5d6fd160997a6ffbf}
+Set the variable value
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/\hyperlink{variable_8hpp}{variable.\+hpp}\end{DoxyCompactItemize}

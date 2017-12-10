@@ -1,0 +1,134 @@
+\hypertarget{class_asm_section}{}\section{Asm\+Section Class Reference}
+\label{class_asm_section}\index{Asm\+Section@{Asm\+Section}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_section_abdafa2c7740e2f605ec5b49f7e626a61}{Asm\+Section} (const std\+::string \&name)
+\item 
+void \hyperlink{class_asm_section_ae279cae0a2e2f83be5e45a0455a12dc7}{set\+\_\+name} (const std\+::string \&name)
+\item 
+std\+::string \hyperlink{class_asm_section_a18f1120b87e6a18238d8ec5c80c94119}{get\+\_\+name} ()
+\item 
+void \hyperlink{class_asm_section_ac11edaa3db1df03f9dec92b412888f39}{add\+\_\+instruction} (\hyperlink{class_asm_instruction}{Asm\+Instruction} $\ast$instruction)
+\item 
+std\+::vector$<$ \hyperlink{class_asm_instruction}{Asm\+Instruction} $\ast$ $>$ \hyperlink{class_asm_section_a534347bba5a872e0764a4271c17ba3e1}{get\+\_\+instructions} ()
+\item 
+void \hyperlink{class_asm_section_a8b1a81b7abe51cde0e8802558cd32321}{add\+\_\+label} (\hyperlink{class_asm_label}{Asm\+Label} $\ast$label)
+\item 
+std\+::vector$<$ \hyperlink{class_asm_label}{Asm\+Label} $\ast$ $>$ \hyperlink{class_asm_section_a4ec7fafdfb87992eb76ddde39bb047a8}{get\+\_\+labels} ()
+\item 
+\hyperlink{class_asm_label}{Asm\+Label} $\ast$ \hyperlink{class_asm_section_a5a00094fd62002a7cfc2383f3fe80b60}{find\+\_\+label} (std\+::string label)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Section@{Asm\+Section}!Asm\+Section@{Asm\+Section}}
+\index{Asm\+Section@{Asm\+Section}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{Asm\+Section(const std\+::string \&name)}{AsmSection(const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Section\+::\+Asm\+Section (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_abdafa2c7740e2f605ec5b49f7e626a61}{}\label{class_asm_section_abdafa2c7740e2f605ec5b49f7e626a61}
+Constructor 
+
+\subsection{Member Function Documentation}
+\index{Asm\+Section@{Asm\+Section}!add\+\_\+instruction@{add\+\_\+instruction}}
+\index{add\+\_\+instruction@{add\+\_\+instruction}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{add\+\_\+instruction(\+Asm\+Instruction $\ast$instruction)}{add_instruction(AsmInstruction *instruction)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Section\+::add\+\_\+instruction (
+\begin{DoxyParamCaption}
+\item[{{\bf Asm\+Instruction} $\ast$}]{instruction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_ac11edaa3db1df03f9dec92b412888f39}{}\label{class_asm_section_ac11edaa3db1df03f9dec92b412888f39}
+Add a new instruction to section
+
+
+\begin{DoxyParams}{Parameters}
+{\em instruction} & the new instruction to add \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Section@{Asm\+Section}!add\+\_\+label@{add\+\_\+label}}
+\index{add\+\_\+label@{add\+\_\+label}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{add\+\_\+label(\+Asm\+Label $\ast$label)}{add_label(AsmLabel *label)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Section\+::add\+\_\+label (
+\begin{DoxyParamCaption}
+\item[{{\bf Asm\+Label} $\ast$}]{label}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_a8b1a81b7abe51cde0e8802558cd32321}{}\label{class_asm_section_a8b1a81b7abe51cde0e8802558cd32321}
+Add a new label to section
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the new label to add \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Section@{Asm\+Section}!find\+\_\+label@{find\+\_\+label}}
+\index{find\+\_\+label@{find\+\_\+label}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{find\+\_\+label(std\+::string label)}{find_label(std::string label)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asm\+Label}$\ast$ Asm\+Section\+::find\+\_\+label (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{label}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_a5a00094fd62002a7cfc2383f3fe80b60}{}\label{class_asm_section_a5a00094fd62002a7cfc2383f3fe80b60}
+search label by name
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name\+Label} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Label 
+\end{DoxyReturn}
+\index{Asm\+Section@{Asm\+Section}!get\+\_\+instructions@{get\+\_\+instructions}}
+\index{get\+\_\+instructions@{get\+\_\+instructions}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{get\+\_\+instructions()}{get_instructions()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Asm\+Instruction}$\ast$$>$ Asm\+Section\+::get\+\_\+instructions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_a534347bba5a872e0764a4271c17ba3e1}{}\label{class_asm_section_a534347bba5a872e0764a4271c17ba3e1}
+Get instructions list
+
+\begin{DoxyReturn}{Returns}
+a vector of \hyperlink{class_asm_instruction}{Asm\+Instruction} 
+\end{DoxyReturn}
+\index{Asm\+Section@{Asm\+Section}!get\+\_\+labels@{get\+\_\+labels}}
+\index{get\+\_\+labels@{get\+\_\+labels}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{get\+\_\+labels()}{get_labels()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Asm\+Label}$\ast$$>$ Asm\+Section\+::get\+\_\+labels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_a4ec7fafdfb87992eb76ddde39bb047a8}{}\label{class_asm_section_a4ec7fafdfb87992eb76ddde39bb047a8}
+Get labels list
+
+\begin{DoxyReturn}{Returns}
+a vector of \hyperlink{class_asm_label}{Asm\+Label} 
+\end{DoxyReturn}
+\index{Asm\+Section@{Asm\+Section}!get\+\_\+name@{get\+\_\+name}}
+\index{get\+\_\+name@{get\+\_\+name}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{get\+\_\+name()}{get_name()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Asm\+Section\+::get\+\_\+name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_a18f1120b87e6a18238d8ec5c80c94119}{}\label{class_asm_section_a18f1120b87e6a18238d8ec5c80c94119}
+Get the instruction name
+
+\begin{DoxyReturn}{Returns}
+a string name 
+\end{DoxyReturn}
+\index{Asm\+Section@{Asm\+Section}!set\+\_\+name@{set\+\_\+name}}
+\index{set\+\_\+name@{set\+\_\+name}!Asm\+Section@{Asm\+Section}}
+\subsubsection[{\texorpdfstring{set\+\_\+name(const std\+::string \&name)}{set_name(const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Section\+::set\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_section_ae279cae0a2e2f83be5e45a0455a12dc7}{}\label{class_asm_section_ae279cae0a2e2f83be5e45a0455a12dc7}
+Set instruction label
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the instruction label string \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+parser/\hyperlink{section_8hpp}{section.\+hpp}\end{DoxyCompactItemize}

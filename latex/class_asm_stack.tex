@@ -1,0 +1,166 @@
+\hypertarget{class_asm_stack}{}\section{Asm\+Stack Class Reference}
+\label{class_asm_stack}\index{Asm\+Stack@{Asm\+Stack}}
+
+
+Inheritance diagram for Asm\+Stack\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_asm_stack_ade94a09bf71858c13f894b0b6b0fa127}{push} (int value, int size)
+\item 
+void \hyperlink{class_asm_stack_a73cf8875ed39742d2518173877f0ca8e}{Fill\+Esp} ()
+\item 
+void \hyperlink{class_asm_stack_ae17c8b5d436f3ef133d198002b3104cf}{popR} (\hyperlink{class_asm_register}{Asm\+Register} $\ast$\+\_\+\+\_\+register)
+\item 
+void \hyperlink{class_asm_stack_ace8daef2026e64581cba6b29880101e4}{pop} ()
+\item 
+int \hyperlink{class_asm_stack_aff28acd0b82ee16008a6fe742393923e}{get\+\_\+value} (int address)
+\item 
+void \hyperlink{class_asm_stack_a20516b49a7c8c031d649a79c9c8d0e9a}{set\+\_\+value} (int address, int value)
+\item 
+map$<$ int, int $>$ \hyperlink{class_asm_stack_a774bb87af3b809022db053ac3e1d0543}{get\+\_\+ebp} ()
+\item 
+map$<$ int, int $>$ \hyperlink{class_asm_stack_ab59395d74a3c9720d99c079c1192a592}{get\+\_\+esp} ()
+\item 
+int \hyperlink{class_asm_stack_ab2aa25f78de9eb8b9ed578c66483488d}{top} (int rindex)
+\item 
+void \hyperlink{class_asm_stack_a98e2b36bf4d6ce28dd8912a67a3a8a4b}{remove} (int size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Stack@{Asm\+Stack}!Fill\+Esp@{Fill\+Esp}}
+\index{Fill\+Esp@{Fill\+Esp}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{Fill\+Esp()}{FillEsp()}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Stack\+::\+Fill\+Esp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_a73cf8875ed39742d2518173877f0ca8e}{}\label{class_asm_stack_a73cf8875ed39742d2518173877f0ca8e}
+Copy ebp into esp \index{Asm\+Stack@{Asm\+Stack}!get\+\_\+ebp@{get\+\_\+ebp}}
+\index{get\+\_\+ebp@{get\+\_\+ebp}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{get\+\_\+ebp()}{get_ebp()}}]{\setlength{\rightskip}{0pt plus 5cm}map$<$int,int$>$ Asm\+Stack\+::get\+\_\+ebp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_a774bb87af3b809022db053ac3e1d0543}{}\label{class_asm_stack_a774bb87af3b809022db053ac3e1d0543}
+Get ebp
+
+\begin{DoxyReturn}{Returns}
+a map 
+\end{DoxyReturn}
+\index{Asm\+Stack@{Asm\+Stack}!get\+\_\+esp@{get\+\_\+esp}}
+\index{get\+\_\+esp@{get\+\_\+esp}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{get\+\_\+esp()}{get_esp()}}]{\setlength{\rightskip}{0pt plus 5cm}map$<$int,int$>$ Asm\+Stack\+::get\+\_\+esp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_ab59395d74a3c9720d99c079c1192a592}{}\label{class_asm_stack_ab59395d74a3c9720d99c079c1192a592}
+Get esp
+
+\begin{DoxyReturn}{Returns}
+a map 
+\end{DoxyReturn}
+\index{Asm\+Stack@{Asm\+Stack}!get\+\_\+value@{get\+\_\+value}}
+\index{get\+\_\+value@{get\+\_\+value}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{get\+\_\+value(int address)}{get_value(int address)}}]{\setlength{\rightskip}{0pt plus 5cm}int Asm\+Stack\+::get\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{int}]{address}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_aff28acd0b82ee16008a6fe742393923e}{}\label{class_asm_stack_aff28acd0b82ee16008a6fe742393923e}
+get a value of the specified address
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & the address of value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 
+\end{DoxyReturn}
+\index{Asm\+Stack@{Asm\+Stack}!pop@{pop}}
+\index{pop@{pop}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{pop()}{pop()}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Stack\+::pop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_ace8daef2026e64581cba6b29880101e4}{}\label{class_asm_stack_ace8daef2026e64581cba6b29880101e4}
+Empty the stack \index{Asm\+Stack@{Asm\+Stack}!popR@{popR}}
+\index{popR@{popR}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{pop\+R(\+Asm\+Register $\ast$\+\_\+\+\_\+register)}{popR(AsmRegister *__register)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Stack\+::popR (
+\begin{DoxyParamCaption}
+\item[{{\bf Asm\+Register} $\ast$}]{\+\_\+\+\_\+register}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_ae17c8b5d436f3ef133d198002b3104cf}{}\label{class_asm_stack_ae17c8b5d436f3ef133d198002b3104cf}
+Retrieve the contents of the top of the stack and transfer it to the register \+\_\+\+\_\+ register \index{Asm\+Stack@{Asm\+Stack}!push@{push}}
+\index{push@{push}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{push(int value, int size)}{push(int value, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Stack\+::push (
+\begin{DoxyParamCaption}
+\item[{int}]{value, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_ade94a09bf71858c13f894b0b6b0fa127}{}\label{class_asm_stack_ade94a09bf71858c13f894b0b6b0fa127}
+add function parameters to the stack (ebp)
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the function parameter \\
+\hline
+{\em size} & the size of value (2(16 bits)s,4(32 bits),..) \\
+\hline
+{\em pointerP} & the the address in the stack(ebp+4, ..) \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Stack@{Asm\+Stack}!remove@{remove}}
+\index{remove@{remove}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{remove(int size)}{remove(int size)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Stack\+::remove (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_a98e2b36bf4d6ce28dd8912a67a3a8a4b}{}\label{class_asm_stack_a98e2b36bf4d6ce28dd8912a67a3a8a4b}
+Remove the the first \char`\"{}size\char`\"{} bits of the stack
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Stack@{Asm\+Stack}!set\+\_\+value@{set\+\_\+value}}
+\index{set\+\_\+value@{set\+\_\+value}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{set\+\_\+value(int address, int value)}{set_value(int address, int value)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Stack\+::set\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{int}]{address, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_a20516b49a7c8c031d649a79c9c8d0e9a}{}\label{class_asm_stack_a20516b49a7c8c031d649a79c9c8d0e9a}
+Modify the socked value
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & the address of value to modify \\
+\hline
+{\em Value} & the new value \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Stack@{Asm\+Stack}!top@{top}}
+\index{top@{top}!Asm\+Stack@{Asm\+Stack}}
+\subsubsection[{\texorpdfstring{top(int rindex)}{top(int rindex)}}]{\setlength{\rightskip}{0pt plus 5cm}int Asm\+Stack\+::top (
+\begin{DoxyParamCaption}
+\item[{int}]{rindex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_stack_ab2aa25f78de9eb8b9ed578c66483488d}{}\label{class_asm_stack_ab2aa25f78de9eb8b9ed578c66483488d}
+Return the indexed value by a reverse index in the stack
+
+
+\begin{DoxyParams}{Parameters}
+{\em rindex} & the reverse index\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/\hyperlink{stack_8hpp}{stack.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,104 @@
+\hypertarget{class_asm_macro}{}\section{Asm\+Macro Class Reference}
+\label{class_asm_macro}\index{Asm\+Macro@{Asm\+Macro}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_asm_macro_ab79c7836e736b223a3dee77896a9d292}{Asm\+Macro} (const std\+::string \&name)
+\item 
+std\+::string \hyperlink{class_asm_macro_a479741867a08fb8ffa20fb3979adcb70}{get\+\_\+name} ()
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{class_asm_macro_af951eaf9a7f61708f02af3f98ff6c9da}{get\+\_\+parameters} ()
+\item 
+std\+::vector$<$ \hyperlink{class_asm_section}{Asm\+Section} $\ast$ $>$ \hyperlink{class_asm_macro_a6731b512b3d7ef2aa4f5f2c2295a7a9a}{get\+\_\+sections} ()
+\item 
+void \hyperlink{class_asm_macro_a7284456d5358272b74cfbf40a21cfc8f}{add\+\_\+section} (\hyperlink{class_asm_section}{Asm\+Section} $\ast$section)
+\item 
+\hyperlink{class_asm_section}{Asm\+Section} $\ast$ \hyperlink{class_asm_macro_afa7128e317c2e77aec54683bc6a915bb}{get\+\_\+last\+\_\+section} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Asm\+Macro@{Asm\+Macro}!Asm\+Macro@{Asm\+Macro}}
+\index{Asm\+Macro@{Asm\+Macro}!Asm\+Macro@{Asm\+Macro}}
+\subsubsection[{\texorpdfstring{Asm\+Macro(const std\+::string \&name)}{AsmMacro(const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}Asm\+Macro\+::\+Asm\+Macro (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_macro_ab79c7836e736b223a3dee77896a9d292}{}\label{class_asm_macro_ab79c7836e736b223a3dee77896a9d292}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the macro name \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Asm\+Macro@{Asm\+Macro}!add\+\_\+section@{add\+\_\+section}}
+\index{add\+\_\+section@{add\+\_\+section}!Asm\+Macro@{Asm\+Macro}}
+\subsubsection[{\texorpdfstring{add\+\_\+section(\+Asm\+Section $\ast$section)}{add_section(AsmSection *section)}}]{\setlength{\rightskip}{0pt plus 5cm}void Asm\+Macro\+::add\+\_\+section (
+\begin{DoxyParamCaption}
+\item[{{\bf Asm\+Section} $\ast$}]{section}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_macro_a7284456d5358272b74cfbf40a21cfc8f}{}\label{class_asm_macro_a7284456d5358272b74cfbf40a21cfc8f}
+Add a new macro section
+
+
+\begin{DoxyParams}{Parameters}
+{\em section} & the new section \\
+\hline
+\end{DoxyParams}
+\index{Asm\+Macro@{Asm\+Macro}!get\+\_\+last\+\_\+section@{get\+\_\+last\+\_\+section}}
+\index{get\+\_\+last\+\_\+section@{get\+\_\+last\+\_\+section}!Asm\+Macro@{Asm\+Macro}}
+\subsubsection[{\texorpdfstring{get\+\_\+last\+\_\+section()}{get_last_section()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asm\+Section}$\ast$ Asm\+Macro\+::get\+\_\+last\+\_\+section (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_macro_afa7128e317c2e77aec54683bc6a915bb}{}\label{class_asm_macro_afa7128e317c2e77aec54683bc6a915bb}
+Get last macro section
+
+\begin{DoxyReturn}{Returns}
+an \hyperlink{class_asm_section}{Asm\+Section} or nullptr 
+\end{DoxyReturn}
+\index{Asm\+Macro@{Asm\+Macro}!get\+\_\+name@{get\+\_\+name}}
+\index{get\+\_\+name@{get\+\_\+name}!Asm\+Macro@{Asm\+Macro}}
+\subsubsection[{\texorpdfstring{get\+\_\+name()}{get_name()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Asm\+Macro\+::get\+\_\+name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_macro_a479741867a08fb8ffa20fb3979adcb70}{}\label{class_asm_macro_a479741867a08fb8ffa20fb3979adcb70}
+Get macro name
+
+\begin{DoxyReturn}{Returns}
+a string 
+\end{DoxyReturn}
+\index{Asm\+Macro@{Asm\+Macro}!get\+\_\+parameters@{get\+\_\+parameters}}
+\index{get\+\_\+parameters@{get\+\_\+parameters}!Asm\+Macro@{Asm\+Macro}}
+\subsubsection[{\texorpdfstring{get\+\_\+parameters()}{get_parameters()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ Asm\+Macro\+::get\+\_\+parameters (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_macro_af951eaf9a7f61708f02af3f98ff6c9da}{}\label{class_asm_macro_af951eaf9a7f61708f02af3f98ff6c9da}
+Get macro parameters
+
+\begin{DoxyReturn}{Returns}
+a vector of modules string 
+\end{DoxyReturn}
+\index{Asm\+Macro@{Asm\+Macro}!get\+\_\+sections@{get\+\_\+sections}}
+\index{get\+\_\+sections@{get\+\_\+sections}!Asm\+Macro@{Asm\+Macro}}
+\subsubsection[{\texorpdfstring{get\+\_\+sections()}{get_sections()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Asm\+Section}$\ast$$>$ Asm\+Macro\+::get\+\_\+sections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_asm_macro_a6731b512b3d7ef2aa4f5f2c2295a7a9a}{}\label{class_asm_macro_a6731b512b3d7ef2aa4f5f2c2295a7a9a}
+Get macro sections
+
+\begin{DoxyReturn}{Returns}
+a vector of \hyperlink{class_asm_section}{Asm\+Section} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+parser/\hyperlink{macro_8hpp}{macro.\+hpp}\end{DoxyCompactItemize}

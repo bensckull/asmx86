@@ -17,6 +17,8 @@
  /*! \file engine.hpp
  *
  *  \author Hanan6 <hanan.najim6@gmail.com>
+ *  \author Adnan44 <adnane.mounassib@gmail.com>
+ *  \author YassineAi <yassine.soudane@gmail.com>
  *  \version 1.0
  *  \date october 2017
  */
@@ -49,6 +51,8 @@ class AsmEngine: public AsmParser
         AsmRegisterCollection* __registers;
 
         AsmStack* __stack;
+
+	vector<int> stackNotUsed;
         
         AsmErrors* __errors;
 
@@ -521,8 +525,17 @@ class AsmEngine: public AsmParser
 
             else
                 cerr << "  ! No main label has been founded in this program" << endl;
-
-
+        }
+        AsmVariableCollection* getVariables() {
+            return __variables;
+        }
+        
+        AsmRegisterCollection* getRegisters() {
+            return __registers;
+        }
+          // use stackNoUsed instead of __stack 
+        vector<int> getStack() {
+            return stackNotUsed;
         }
 };
 

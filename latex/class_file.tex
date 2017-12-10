@@ -1,0 +1,165 @@
+\hypertarget{class_file}{}\section{File Class Reference}
+\label{class_file}\index{File@{File}}
+
+
+Inheritance diagram for File\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_file_a10387d2875bc481b8c435964b3a3ce3f}{File} (const std\+::string \&path)
+\item 
+void \hyperlink{class_file_a7a5f2aefb6eb3250cca47ed6f8dc2f31}{read} ()
+\item 
+void \hyperlink{class_file_af0e66a1f2b10df746a25cf4b0519010f}{write} (const std\+::string \&pipe, const File\+Mode \&mode=File\+Mode\+::\+A\+P\+P\+E\+ND)
+\item 
+bool \hyperlink{class_file_a4260fca380a387a8347b83bb4bee91b5}{exists} ()
+\item 
+bool \hyperlink{class_file_a2579cd0f5f7ad60c88a9395fc501f4cd}{is\+\_\+file} ()
+\item 
+bool \hyperlink{class_file_a02d9f31892069ad801dd1e344399df12}{is\+\_\+directory} ()
+\item 
+std\+::string \hyperlink{class_file_a77772bfd647e4d1ad87760e5f1230c51}{get\+\_\+basename} ()
+\item 
+std\+::string \hyperlink{class_file_aabdd662a9c1b8600d8a3633dd6204c48}{get\+\_\+filename} ()
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{class_file_a7042ed05c4fa239c8d8481295c1cbc30}{get\+\_\+buffer} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{File@{File}!File@{File}}
+\index{File@{File}!File@{File}}
+\subsubsection[{\texorpdfstring{File(const std\+::string \&path)}{File(const std::string &path)}}]{\setlength{\rightskip}{0pt plus 5cm}File\+::\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a10387d2875bc481b8c435964b3a3ce3f}{}\label{class_file_a10387d2875bc481b8c435964b3a3ce3f}
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & the file path on filesystem\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::length\+\_\+error} & when path length is empty \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Member Function Documentation}
+\index{File@{File}!exists@{exists}}
+\index{exists@{exists}!File@{File}}
+\subsubsection[{\texorpdfstring{exists()}{exists()}}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+::exists (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a4260fca380a387a8347b83bb4bee91b5}{}\label{class_file_a4260fca380a387a8347b83bb4bee91b5}
+Check if \hyperlink{class_file}{File} exists on filesystem
+
+\begin{DoxyReturn}{Returns}
+true if exists, false otherwise 
+\end{DoxyReturn}
+\index{File@{File}!get\+\_\+basename@{get\+\_\+basename}}
+\index{get\+\_\+basename@{get\+\_\+basename}!File@{File}}
+\subsubsection[{\texorpdfstring{get\+\_\+basename()}{get_basename()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string File\+::get\+\_\+basename (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a77772bfd647e4d1ad87760e5f1230c51}{}\label{class_file_a77772bfd647e4d1ad87760e5f1230c51}
+Get basename
+
+\begin{DoxyReturn}{Returns}
+the basename of current path 
+\end{DoxyReturn}
+\index{File@{File}!get\+\_\+buffer@{get\+\_\+buffer}}
+\index{get\+\_\+buffer@{get\+\_\+buffer}!File@{File}}
+\subsubsection[{\texorpdfstring{get\+\_\+buffer()}{get_buffer()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ File\+::get\+\_\+buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a7042ed05c4fa239c8d8481295c1cbc30}{}\label{class_file_a7042ed05c4fa239c8d8481295c1cbc30}
+Get buffer content
+
+\begin{DoxyReturn}{Returns}
+a vector of string 
+\end{DoxyReturn}
+\index{File@{File}!get\+\_\+filename@{get\+\_\+filename}}
+\index{get\+\_\+filename@{get\+\_\+filename}!File@{File}}
+\subsubsection[{\texorpdfstring{get\+\_\+filename()}{get_filename()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string File\+::get\+\_\+filename (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_aabdd662a9c1b8600d8a3633dd6204c48}{}\label{class_file_aabdd662a9c1b8600d8a3633dd6204c48}
+Get filename
+
+\begin{DoxyReturn}{Returns}
+the current path 
+\end{DoxyReturn}
+\index{File@{File}!is\+\_\+directory@{is\+\_\+directory}}
+\index{is\+\_\+directory@{is\+\_\+directory}!File@{File}}
+\subsubsection[{\texorpdfstring{is\+\_\+directory()}{is_directory()}}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+::is\+\_\+directory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a02d9f31892069ad801dd1e344399df12}{}\label{class_file_a02d9f31892069ad801dd1e344399df12}
+Check if \hyperlink{class_file}{File} is a directory
+
+\begin{DoxyReturn}{Returns}
+true if it\textquotesingle{}s a directory, false otherwise 
+\end{DoxyReturn}
+\index{File@{File}!is\+\_\+file@{is\+\_\+file}}
+\index{is\+\_\+file@{is\+\_\+file}!File@{File}}
+\subsubsection[{\texorpdfstring{is\+\_\+file()}{is_file()}}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+::is\+\_\+file (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a2579cd0f5f7ad60c88a9395fc501f4cd}{}\label{class_file_a2579cd0f5f7ad60c88a9395fc501f4cd}
+Check if \hyperlink{class_file}{File} is a file
+
+\begin{DoxyReturn}{Returns}
+true if it\textquotesingle{}s a file, false otherwise 
+\end{DoxyReturn}
+\index{File@{File}!read@{read}}
+\index{read@{read}!File@{File}}
+\subsubsection[{\texorpdfstring{read()}{read()}}]{\setlength{\rightskip}{0pt plus 5cm}void File\+::read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_a7a5f2aefb6eb3250cca47ed6f8dc2f31}{}\label{class_file_a7a5f2aefb6eb3250cca47ed6f8dc2f31}
+Read \hyperlink{class_file}{File} content
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & when path cannot be readed \\
+\hline
+\end{DoxyExceptions}
+\index{File@{File}!write@{write}}
+\index{write@{write}!File@{File}}
+\subsubsection[{\texorpdfstring{write(const std\+::string \&pipe, const File\+Mode \&mode=\+File\+Mode\+::\+A\+P\+P\+E\+N\+D)}{write(const std::string &pipe, const FileMode &mode=FileMode::APPEND)}}]{\setlength{\rightskip}{0pt plus 5cm}void File\+::write (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{pipe, }
+\item[{const File\+Mode \&}]{mode = {\ttfamily FileMode\+:\+:APPEND}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_file_af0e66a1f2b10df746a25cf4b0519010f}{}\label{class_file_af0e66a1f2b10df746a25cf4b0519010f}
+Write pipe content into \hyperlink{class_file}{File}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pipe} & the string buffer \\
+\hline
+{\em mode} & the file writing mode (Default\+: Append to end of file)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & when path cannot be readed \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+file/\hyperlink{file_8hpp}{file.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,16 @@
+digraph "AsmStack"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="AsmStack",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="firebrick4",fontsize="10",style="solid"];
+  Node2 [label="AsmCmp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_asm_cmp.html"];
+  Node1 -> Node3 [dir="back",color="firebrick4",fontsize="10",style="solid"];
+  Node3 [label="AsmExtern",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_asm_extern.html"];
+  Node1 -> Node4 [dir="back",color="firebrick4",fontsize="10",style="solid"];
+  Node4 [label="AsmMov",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_asm_mov.html"];
+  Node1 -> Node5 [dir="back",color="firebrick4",fontsize="10",style="solid"];
+  Node5 [label="AsmMul",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_asm_mul.html"];
+  Node1 -> Node6 [dir="back",color="firebrick4",fontsize="10",style="solid"];
+  Node6 [label="AsmPush",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_asm_push.html"];
+}
